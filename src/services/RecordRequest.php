@@ -79,9 +79,15 @@ class RecordRequest
         $start = microtime(true);
 
         Event::on(Response::class, Response::EVENT_AFTER_SEND, function ($event) use ($record, $start) {
-            $record->execTime = round(microtime(true) - $start, 2);
-            $record->responseCode = $event->sender->getStatusCode();
-            $record->save();
+            try {
+                $record->execTime = round(microtime(true) - $start, 2);
+                $record->responseCode = $event->sender->getStatusCode();
+                $record->save();
+            } catch (\Exception $e) {
+                // handle issue this event is called when uninstalling the plugin
+                return;
+            }
+
         });
     }
 
