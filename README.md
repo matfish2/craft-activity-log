@@ -58,7 +58,7 @@ If omitted the `days` option defaults to 30 days.
 
 You can try Activity Log in a development environment for as long as you like. Once your site goes live, you are
 required to purchase a license for the plugin. License is purchasable through
-the [Craft Plugin Store](https://plugins.craftcms.com/activity-log).
+the [Craft Plugin Store](https://plugins.craftcms.com/activity-logs).
 
 For more information, see
 Craft's [Commercial Plugin Licensing](https://craftcms.com/docs/4.x/plugins.html#commercial-plugin-licensing).
