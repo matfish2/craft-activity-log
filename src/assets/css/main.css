@@ -1,0 +1,96 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.VuePagination__pagination-item a {
+    width:auto !important;
+}
+
+.VueTables__limit {
+    display: flex !important;
+}
+
+.VueTables__filters-row th:first-child {
+    border:1px solid #e5e7eb;
+}
+
+.request-details th {
+    vertical-align: top;
+}
+
+.request-details td {
+    padding-right:10px !important;
+}
+.request-details th {
+    padding-left:10px !important;
+}
+
+.VueTables__child-row >td {
+    border:1px solid #e5e7eb;
+    padding:10px;
+}
+
+.VueTables__child-row-toggler {
+    width: 16px;
+    height: 16px;
+    line-height: 16px;
+    display: block;
+    margin: auto;
+    text-align: center;
+}
+
+.VueTables__child-row-toggler--closed::before {
+    content: "+";
+}
+
+.VueTables__child-row-toggler--open::before {
+    content: "-";
+}
+
+.VueTables__columns-dropdown .dropdown-menu {
+    width:200px;
+}
+
+.dropdown-trigger {
+    padding:10px;
+}
+
+.dropdown-trigger:after {
+    content: " \2193";
+}
+
+.VueTables__limit-field {
+    padding:10px;
+}
+
+.VueTables--server>div>div {
+    flex-direction: row-reverse;
+}
+
+.dropdown-item span {
+    color:black;
+}
+
+.VueTables__row  td:first-child {
+    cursor: pointer;
+}
+
+.VueTables--server {
+    position: relative;
+}
+
+.VuePagination__pagination-item.m-1 {
+    margin:0 !important;
+}
+
+.VuePagination__pagination-item a:hover {
+    text-decoration: none !important;
+}
+
+.table-responsive {
+    overflow-x:auto;
+}
+
+table thead tr:nth-child(2) th {
+    font-weight: normal !important;
+}

@@ -1,0 +1,36 @@
+{% import '_includes/forms.twig' as forms %}
+
+
+{{ forms.lightswitchField({
+    first: true,
+    label: 'Record Site Page Requests',
+    name: 'recordSitePageRequests',
+    on: settings.recordSitePageRequests
+}) }}
+
+{{ forms.lightswitchField({
+    first: true,
+    label: 'Record Site AJAX Requests',
+    name: 'recordSiteAjaxRequests',
+    on: settings.recordSiteAjaxRequests
+}) }}
+
+{{ forms.lightswitchField({
+    label: 'Record Control Panel Page Requests',
+    name: 'recordCpPageRequests',
+    on: settings.recordCpPageRequests
+}) }}
+
+{{ forms.lightswitchField({
+    label: 'Record Control Panel AJAX Requests',
+    description:'Note: Login request is recorded even when this option is turned off',
+    name: 'recordCpAjaxRequests',
+    on: settings.recordCpAjaxRequests
+}) }}
+
+{{ forms.lightswitchField({
+    label: 'Record Only Actions',
+    name: 'recordOnlyActions',
+    on: settings.recordOnlyActions
+}) }}
+

@@ -1,0 +1,39 @@
+{
+  "name": "matfish/craft-activity-log",
+  "description": "Record HTTP requests to Craft",
+  "type": "craft-plugin",
+  "keywords": ["log", "audit","http"],
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Matanya Fishaimer",
+      "homepage": "https://developer-website.tld"
+    }
+  ],
+  "support": {
+    "email": "matfish2@gmail.com",
+    "issues": "https://github.com/matfish2/craft-activity-log/issues?state=open",
+    "source": "https://github.com/matfish2/craft-activity-log",
+    "docs": "https://github.com/matfish2/craft-activity-log/blob/master/README.md"
+  },
+  "require": {
+    "craftcms/cms": "^4.0.0",
+    "ext-json": "*",
+    "nesbot/carbon": "^2.58"
+  },
+  "autoload": {
+    "psr-4": {
+      "matfish\\ActivityLog\\": "src/"
+    }
+  },
+  "extra": {
+    "name": "Activity Log",
+    "handle": "activity-log"
+  },
+  "config": {
+    "allow-plugins": {
+      "yiisoft/yii2-composer": true,
+      "craftcms/plugin-installer": true
+    }
+  }
+}
