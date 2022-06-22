@@ -12,7 +12,7 @@
                         :options="options"
                         @loading="loadingTable=true"
                         @loaded="loadingTable=false"
-                        url="/{{ craft.app.config.general.cpTrigger }}?action=activity-log/activity-log/data">
+                        url="/{{ craft.app.config.general.cpTrigger }}?action=activity-logs/activity-log/data">
             <template slot="beforeLimit">
                 <date-range-picker @selected="updateDateRange"></date-range-picker>
             </template>

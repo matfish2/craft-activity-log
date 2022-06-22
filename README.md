@@ -17,7 +17,7 @@ composer require matfish/craft-activity-log
 2. Install the plugin:
 
 ```
-php craft plugin/install activity-log
+php craft plugin/install activity-logs
 ```
 
 ### Usage
@@ -50,7 +50,7 @@ Click the "+" sign on the left-hand side of each row to expand a child row conta
 
 You can prune (delete) data before that last X days using the following console command:
 ```bash
-php craft activity-log/logs/prune --days=30
+php craft activity-logs/logs/prune --days=30
 ```
 If omitted the `days` option defaults to 30 days.
 

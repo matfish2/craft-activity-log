@@ -27,8 +27,8 @@
     }
   },
   "extra": {
-    "name": "Activity Log",
-    "handle": "activity-log"
+    "name": "Activity Logs",
+    "handle": "activity-logs"
   },
   "config": {
     "allow-plugins": {

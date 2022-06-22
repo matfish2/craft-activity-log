@@ -19,7 +19,7 @@ new Vue({
     el: '#activity-log-app',
     delimiters: ['{!!', '!!}'],
     async mounted() {
-        const {data} = await axios.get('/' + window.cpTrigger + '?action=activity-log/activity-log/initial-data')
+        const {data} = await axios.get('/' + window.cpTrigger + '?action=activity-logs/activity-log/initial-data')
         this.sites = data.sites.map(site => ({
             id: site.id,
             text: site.name
