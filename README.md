@@ -46,8 +46,11 @@ The user can control which request types to record under the Settings page.
 
 
 Requests can be viewed and filtered under the Activity Log page.
-Click the "Columns" button to add or remove columns from the table on the fly. 
+Click the "Columns" button to add or remove columns from the table on the fly:
+![craft4 test_adminos_activity-logs_site=default](https://user-images.githubusercontent.com/1510460/175236200-2c2ebc1b-b1c6-4dfa-a07a-8d20a3780cb5.png)
+
 Note that most columns have a dedicated filter attached to them (except for date range at the top of the table).
+
 Click the "+" sign on the left-hand side of each row to expand a child row containing the full request data:
 
 ![craft4 test_adminos_activity-log_site=default (4)](https://user-images.githubusercontent.com/1510460/175233957-eeb453c1-8b18-448e-af7a-c476f3ac9cb5.png)
