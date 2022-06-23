@@ -1,4 +1,5 @@
 ## Craft Activity Log
+![craft4 test_adminos_activity-log_site=default (1)](https://user-images.githubusercontent.com/1510460/175233839-30d3f4ac-a3a3-4511-9c1d-b388e4225bf5.png)
 
 This plugin provides a detailed activity log for incoming web requests.
 
@@ -41,11 +42,16 @@ Data points include:
 
 The user can control which request types to record under the Settings page.
 
+![craft4 test_adminos_settings_plugins_activity-log_site=default](https://user-images.githubusercontent.com/1510460/175233673-87f2f69d-0c45-4b0c-a3d9-7c231026989e.png)
+
+
 Requests can be viewed and filtered under the Activity Log page.
 Click the "Columns" button to add or remove columns from the table on the fly. 
 Note that most columns have a dedicated filter attached to them (except for date range at the top of the table).
-Click the "+" sign on the left-hand side of each row to expand a child row containing the full request data.
+Click the "+" sign on the left-hand side of each row to expand a child row containing the full request data:
 
+![craft4 test_adminos_activity-log_site=default (4)](https://user-images.githubusercontent.com/1510460/175233957-eeb453c1-8b18-448e-af7a-c476f3ac9cb5.png)
+ 
 ### Pruning Data
 
 You can prune (delete) data before that last X days using the following console command:
