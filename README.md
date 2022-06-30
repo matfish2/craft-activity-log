@@ -5,7 +5,7 @@ This plugin provides a detailed activity log for incoming web requests.
 
 ### Requirements
 
-This plugin requires Craft CMS 4.x or later.
+This plugin requires Craft CMS 3.x or later.
 
 ### Installation
 

@@ -67,10 +67,10 @@ new Vue({
             loadingTable: true,
             sites: [],
             userId: null,
-            columns: ['url', 'userId', 'siteId', 'isCp', 'isAjax', 'ip', 'method', 'actionSegments', 'responseCode', 'execTime', 'createdAt'],
+            columns: ['url', 'userId', 'siteId', 'isCp', 'isAjax', 'ip', 'method', 'actionSegments', 'responseCode', 'execTime', 'dateCreated'],
             options: {
 
-                visibleColumns: ['url', 'userId', 'siteId', 'actionSegments', 'createdAt'],
+                visibleColumns: ['url', 'userId', 'siteId', 'actionSegments', 'dateCreated'],
                 columnsDropdown: true,
                 templates: {
                     url(h, row) {
@@ -83,7 +83,7 @@ new Vue({
                     }
                 },
                 alwaysShowPerPageSelect: true,
-                customFilters: ['createdAt', 'actionSegments'],
+                customFilters: ['dateCreated', 'actionSegments'],
                 filterByColumn: true,
                 filterable: [
                     'url',
@@ -96,7 +96,7 @@ new Vue({
                     'method'
                 ],
                 orderBy: {
-                    column: 'createdAt',
+                    column: 'dateCreated',
                     ascending: false
                 },
                 headings: {
@@ -109,7 +109,7 @@ new Vue({
                     responseCode: 'Response Code',
                     execTime: 'Execution Time',
                     ip: 'IP',
-                    createdAt: 'Created At'
+                    dateCreated: 'Created At'
                 },
                 listColumns: {
                     siteId: [],
@@ -243,7 +243,7 @@ new Vue({
             return JSON.stringify(JSON.parse(obj), null, 2)
         },
         updateDateRange(val) {
-            Event.$emit('vue-tables.activity-log.filter::createdAt', val)
+            Event.$emit('vue-tables.activity-log.filter::dateCreated', val)
         },
         parseQuery(q) {
             if (!q) {

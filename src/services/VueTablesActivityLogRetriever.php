@@ -15,12 +15,12 @@ class VueTablesActivityLogRetriever
             ->leftJoin('{{%users}}', '{{%users}}.[[id]]={{%activitylog}}.[[userId]]')
             ->select([
                 '{{%activitylog}}.*',
-                '{{%users}}.[[fullName]]',
+                'CONCAT({{%users}}.[[firstName]], " ",{{%users}}.[[lastName]]) [[fullName]]',
                 '{{%users}}.[[userName]]'
 
             ]);
         $filters = $req->getQueryParam('query');
-        $createdAt = $req->getQueryParam('createdAt');
+        $createdAt = $req->getQueryParam('dateCreated');
         $createdAt = $createdAt ? json_decode($createdAt, true, 512, JSON_THROW_ON_ERROR) : null;
 
         $filters = $filters ? json_decode($filters, true) : [];
@@ -37,8 +37,8 @@ class VueTablesActivityLogRetriever
         $orderCol = $req->getQueryParam('orderBy') ?? 'createdAt';
         $orderDir = $req->getQueryParam('ascending') === '1' ? SORT_ASC : SORT_DESC;
 
-        $q->where("[[createdAt]]>='{$start}'");
-        $q->andWhere("[[createdAt]]<='{$end}'");
+        $q->where("{{%activitylog}}.[[dateCreated]]>='{$start}'");
+        $q->andWhere("{{%activitylog}}.[[dateCreated]]<='{$end}'");
 
         foreach ($filters as $key => $value) {
             if ($key === 'url') {
@@ -47,7 +47,7 @@ class VueTablesActivityLogRetriever
                 $valueEnd = $value + 99;
                 $q->andWhere("[[$key]]>=$value AND [[$key]]<=$valueEnd");
             }  elseif ($key === 'userId') {
-                $q->andWhere("{{%users}}.[[username]] LIKE '%$value%' OR {{%users}}.[[fullName]]  LIKE '%$value%'");
+                $q->andWhere("{{%users}}.[[username]] LIKE '%$value%' OR CONCAT({{%users}}.[[firstName]], ' ',{{%users}}.[[lastName]])  LIKE '%$value%'");
             } else {
                 $q->andWhere("[[$key]]='{$value}'");
             }

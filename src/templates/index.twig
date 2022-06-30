@@ -1,6 +1,6 @@
 {% do view.registerAssetBundle("matfish\\ActivityLog\\ActivityLogAssetBundle") %}
 
-{% extends "_layouts/cp.twig" %}
+{% extends "_layouts/cp" %}
 {% set title = "Activity Log"|t('activity-log') %}
 
 {% block content %}
@@ -37,8 +37,8 @@
                 {!! row.fullName ? row.fullName : row.userName !!}
             </template>
 
-            <template slot="createdAt" slot-scope="{row}">
-                {!! formatDate(row.createdAt) !!}
+            <template slot="dateCreated" slot-scope="{row}">
+                {!! formatDate(row.dateCreated) !!}
             </template>
 
             <template slot="responseCode" slot-scope="{row}">
@@ -59,7 +59,7 @@
                     </tr>
                     <tr class="bg-gray-100">
                         <th>Created at</th>
-                        <td>{!! formatDate(row.createdAt) !!}</td>
+                        <td>{!! formatDate(row.dateCreated) !!}</td>
                     </tr>
                     <tr>
                         <th>Action</th>

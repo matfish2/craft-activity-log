@@ -25,10 +25,12 @@ class Install extends Migration
                 'isAction'=>$this->boolean(),
                 'actionSegments'=>$this->string()->null(),
                 'responseCode'=>$this->smallInteger(),
-                'createdAt'=>$this->timestamp()
+                'dateCreated'=>$this->timestamp(),
+                'dateUpdated'=>$this->timestamp(),
+                'uid'=>$this->uid()
             ]);
 
-            $this->createIndex('activityLogCreatedAt_idx','{{%activitylog}}','createdAt');
+            $this->createIndex('activityLogDateCreated_idx','{{%activitylog}}','dateCreated');
             $this->createIndex('activityLogUserId_idx','{{%activitylog}}','userId');
 
         }

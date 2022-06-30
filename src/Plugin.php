@@ -9,8 +9,8 @@ use Craft;
 
 class Plugin extends BasePlugin
 {
-    public bool $hasCpSection = true;
-    public bool $hasCpSettings = true;
+    public $hasCpSection = true;
+    public $hasCpSettings = true;
 
     public function init()
     {

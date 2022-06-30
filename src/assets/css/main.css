@@ -94,3 +94,12 @@
 table thead tr:nth-child(2) th {
     font-weight: normal !important;
 }
+
+th.border, td.border, li.border, button.border {
+    border:1px solid #e5e7eb !important;
+}
+
+.VueTables__limit>div:first-child {
+    position: relative;
+    top:4px;
+}

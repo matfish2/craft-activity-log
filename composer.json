@@ -17,7 +17,7 @@
     "docs": "https://github.com/matfish2/craft-activity-log/blob/master/README.md"
   },
   "require": {
-    "craftcms/cms": "^4.0.0",
+    "craftcms/cms": "^3.0.0",
     "ext-json": "*",
     "nesbot/carbon": "^2.58"
   },

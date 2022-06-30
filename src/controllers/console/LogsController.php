@@ -22,7 +22,7 @@ class LogsController extends Controller
 
         $this->stdout('Pruning records before ' . $cutoff->format('d-m-Y') . '...' . PHP_EOL, Console::FG_GREEN);
 
-        ActivityLog::deleteAll(['<', 'createdAt', $cutoff->format('Y-m-d')]);
+        ActivityLog::deleteAll(['<', 'dateCreated', $cutoff->format('Y-m-d')]);
 
         $this->stdout('Done!' . PHP_EOL, Console::FG_GREEN);
 

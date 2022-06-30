@@ -7,7 +7,6 @@ namespace matfish\ActivityLog\services;
 use Craft;
 use craft\web\Request;
 use craft\web\Response;
-use matfish\ActivityLog\Plugin;
 use yii\base\Event;
 use matfish\ActivityLog\records\ActivityLog as ActivityLogRecord;
 use matfish\ActivityLog\models\ActivityLog as ActivityLogModel;
