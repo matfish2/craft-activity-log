@@ -3,7 +3,7 @@
   "description": "Record HTTP requests to Craft",
   "type": "craft-plugin",
   "keywords": ["log", "audit","http"],
-  "license": "MIT",
+  "license": "proprietary",
   "authors": [
     {
       "name": "Matanya Fishaimer",
