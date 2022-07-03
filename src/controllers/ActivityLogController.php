@@ -5,6 +5,7 @@ namespace matfish\ActivityLog\controllers;
 use craft\elements\User;
 use craft\records\Site;
 use matfish\ActivityLog\ActivityLogAssetBundle;
+use matfish\ActivityLog\records\ActivityLogAction;
 use matfish\ActivityLog\services\VueTablesActivityLogRetriever;
 use yii\web\Response;
 
@@ -14,8 +15,8 @@ class ActivityLogController extends \craft\web\Controller
     {
         $res  = [
             'sites'=>Site::find()->select(['id','name'])->all(),
-            'svgPath'=>$this->getSvgPath()
-
+            'svgPath'=>$this->getSvgPath(),
+            'actions'=>ActivityLogAction::find()->all()
         ];
 
         return $this->asJson($res);

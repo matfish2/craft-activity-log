@@ -1,23 +1,21 @@
 <?php
 
 
-namespace matfish\ActivityLog\migrations;
+namespace matfish\ActivityLog\services;
 
 
 use craft\db\Migration;
 use matfish\ActivityLog\records\ActivityLogAction;
 
-class m220702_144330_add_actions_table extends Migration
+class CreateActionsTable
 {
-    public function safeUp()
-    {
-        if (!$this->db->tableExists('{{%activitylog_actions}}')) {
-            $this->createTable('{{%activitylog_actions}}', [
-                'id' => $this->primaryKey()->notNull(),
-                'action' => $this->string()->notNull(),
-                'label' => $this->string()->notNull(),
-                'native' => $this->boolean()->notNull(),
-                'createdAt' => $this->timestamp()
+    public function execute(Migration $migration) {
+              $migration->createTable('{{%activitylog_actions}}', [
+                'id' => $migration->primaryKey()->notNull(),
+                'action' => $migration->string()->notNull(),
+                'label' => $migration->string()->notNull(),
+                'native' => $migration->boolean()->notNull(),
+                'createdAt' => $migration->timestamp()
             ]);
 
             $actions = [
@@ -66,13 +64,5 @@ class m220702_144330_add_actions_table extends Migration
                 $r->native = true;
                 $r->save();
             }
-        }
-    }
-
-    public function safeDown()
-    {
-        if ($this->db->tableExists('{{%activitylog_actions}}')) {
-            $this->dropTable('{{%activitylog_actions}}');
-        }
     }
 }

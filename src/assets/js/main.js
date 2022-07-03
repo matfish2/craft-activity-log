@@ -27,6 +27,11 @@ new Vue({
 
 
         this.options.listColumns.siteId = this.sites
+        this.options.listColumns.actionSegments = data.actions.map(action=>({
+            id:action.action,
+            text:action.label
+        }))
+
         window.svgPath = data.svgPath
         this.svgPath = data.svgPath
 
@@ -66,6 +71,7 @@ new Vue({
             loaded: false,
             loadingTable: true,
             sites: [],
+            actions:[],
             userId: null,
             columns: ['url', 'userId', 'siteId', 'isCp', 'isAjax', 'ip', 'method', 'actionSegments', 'responseCode', 'execTime', 'createdAt'],
             options: {
@@ -113,48 +119,7 @@ new Vue({
                 },
                 listColumns: {
                     siteId: [],
-                    actionSegments: [
-                        {
-                            id: 'allActions',
-                            text: 'All Actions'
-                        },
-                        {
-                            id: '["users","login"]',
-                            text: 'Login'
-                        },
-                        {
-                            id: '["users","logout"]',
-                            text: 'Logout'
-                        },
-                        {
-                            id: '["users","impersonate"]',
-                            text: 'Impersonate User'
-                        },
-                        {
-                            id: '["elements","apply-draft"]',
-                            text: 'Apply Draft'
-                        },
-                        {
-                            id: '["elements","save"]',
-                            text: 'Save Element'
-                        },
-                        {
-                            id: '["users","save-user"]',
-                            text: 'Save User'
-                        },
-                        {
-                            id: '["assets","generate-transform"]',
-                            text: 'Generate Transform'
-                        },
-                        {
-                            id: '["plugins","save-plugin-settings"]',
-                            text: 'Save Plugin Settings'
-                        },
-                        {
-                            id: '["sections","save-section"]',
-                            text: 'Save Section'
-                        }
-                    ],
+                    actionSegments: [],
                     method: [
                         {
                             id: 'GET',
