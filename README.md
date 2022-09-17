@@ -44,6 +44,8 @@ The user can control which request types to record under the Settings page.
 
 ![craft4 test_adminos_settings_plugins_activity-log_site=default](https://user-images.githubusercontent.com/1510460/175233673-87f2f69d-0c45-4b0c-a3d9-7c231026989e.png)
 
+The user can also give labels to all recorded actions for ease of search.
+![craft4 test_adminos_settings_activity-logs_actions_site=default](https://user-images.githubusercontent.com/1510460/190848960-05dc091f-fe01-4e96-ade1-aba8600b00a9.png)
 
 Requests can be viewed and filtered under the Activity Log page.
 Click the "Columns" button to add or remove columns from the table on the fly:

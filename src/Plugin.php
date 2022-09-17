@@ -2,10 +2,15 @@
 
 namespace matfish\ActivityLog;
 
+use craft\events\RegisterUrlRulesEvent;
+use craft\helpers\UrlHelper;
+use craft\web\UrlManager;
 use matfish\ActivityLog\services\RecordRequest;
 use matfish\ActivityLog\models\Settings;
 use craft\base\Plugin as BasePlugin;
 use Craft;
+use yii\base\Event;
+use yii\web\NotFoundHttpException;
 
 class Plugin extends BasePlugin
 {
@@ -16,6 +21,7 @@ class Plugin extends BasePlugin
     public function init()
     {
         parent::init();
+        $this->_registerCpRoutes();
 
         if (Craft::$app->request->isCpRequest) {
             $this->controllerNamespace = 'matfish\\ActivityLog\\controllers';
@@ -97,4 +103,31 @@ class Plugin extends BasePlugin
         return $request->isAjax || str_contains($request->headers->get('Accept'), 'application/json');
     }
 
+    /**
+     * Register CP routes.
+     */
+    private function _registerCpRoutes(): void
+    {
+        Event::on(UrlManager::class, UrlManager::EVENT_REGISTER_CP_URL_RULES, function (RegisterUrlRulesEvent $event): void {
+            $rules = [
+                'settings/activity-logs' => 'activity-logs/settings/index',
+                'settings/activity-logs/actions' => 'activity-logs/actions/index',
+                'settings/activity-logs/settings' => 'activity-logs/settings/settings',
+            ];
+
+            $event->rules = array_merge($event->rules, $rules);
+        });
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function getSettingsResponse(): mixed
+    {
+        $url = UrlHelper::cpUrl('settings/activity-logs');
+
+        Craft::$app->controller->redirect($url);
+
+        return '';
+    }
 }

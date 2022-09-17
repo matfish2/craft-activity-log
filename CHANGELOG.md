@@ -1,5 +1,10 @@
 # Release Notes for Activity Log
 
+## 1.1.0 - 2022-09-17
+### Changed 
+- Add All Actions to actions search box
+- Add Actions Page to settings 
+
 ## 1.0.0 - 2022-07-03
 ###  Changed
 - Move actions list to database in preparation for Actions CRUD UI
