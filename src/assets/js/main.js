@@ -27,10 +27,12 @@ new Vue({
 
 
         this.options.listColumns.siteId = this.sites
-        this.options.listColumns.actionSegments = data.actions.map(action=>({
+        this.options.listColumns.actionSegments = [
+            {id:'allActions',text:'All Actions'}
+        ].concat(data.actions.map(action=>({
             id:action.action,
             text:action.label
-        }))
+        })))
 
         window.svgPath = data.svgPath
         this.svgPath = data.svgPath
