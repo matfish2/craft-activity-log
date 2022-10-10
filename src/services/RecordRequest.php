@@ -4,10 +4,10 @@
 namespace matfish\ActivityLog\services;
 
 
+use Carbon\Carbon;
 use Craft;
 use craft\web\Request;
 use craft\web\Response;
-use matfish\ActivityLog\Plugin;
 use yii\base\Event;
 use matfish\ActivityLog\records\ActivityLog as ActivityLogRecord;
 use matfish\ActivityLog\models\ActivityLog as ActivityLogModel;
@@ -73,6 +73,7 @@ class RecordRequest
         $record->siteId = $model->siteId;
         $record->isAction = $model->isAction;
         $record->actionSegments = $model->actionSegments;
+        $record->createdAt = Carbon::now();
 
         $record->save();
 
