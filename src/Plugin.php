@@ -72,7 +72,12 @@ class Plugin extends BasePlugin
         $isCp = $request->isCpRequest;
         $isAjax = $this->isAjax($request);
         $settings = self::getInstance()->getSettings();
+
         $true = $settings->recordOnlyActions ? $request->isActionRequest : true;
+
+        if ($settings->requestFilter) {
+            $true = $true && $settings->requestFilter->call($request);
+        }
 
         if ($isCp) {
             if ($isAjax && ($settings->recordCpAjaxRequests || $this->isLoginRequest($request))) {
