@@ -1,5 +1,9 @@
 # Release Notes for Activity Log
 
+## 1.1.1 - 2022-10-10
+### Fixed
+- Fix createdAt null [#1](https://github.com/matfish2/craft-activity-log/issues/1)
+
 ## 1.1.0 - 2022-09-17
 ### Changed 
 - Add All Actions to actions search box
