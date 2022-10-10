@@ -2,7 +2,7 @@
 
 ## 1.1.2 - 2022-10-10
 ### Added
-- Added `requestFilter` setting [#2]((https://github.com/matfish2/craft-activity-log/issues/2))
+- Added `requestFilter` setting [#2](https://github.com/matfish2/craft-activity-log/issues/2)
 
 ## 1.1.1 - 2022-10-10
 ### Fixed

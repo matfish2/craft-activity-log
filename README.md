@@ -44,6 +44,20 @@ The user can control which request types to record under the Settings page.
 
 ![craft4 test_adminos_settings_plugins_activity-log_site=default](https://user-images.githubusercontent.com/1510460/175233673-87f2f69d-0c45-4b0c-a3d9-7c231026989e.png)
 
+For a more fine-grained control, on top of request type settings, you can use the `requestFilter` setting:
+1. In you project create a `config/activity-logs.php` file
+2. Define a `requestFilter` callback that returns a boolean. E.g:
+```php
+<?php
+return [
+    'requestFilter' => function () {
+        return $this->getPathInfo() !== 'activity-logs';
+    }
+];
+```
+The `$this` object in this context will be an instance of the request class (`craft\web\Request`).
+Only requests satisfying the condition (returning `true`) will be recorded.
+
 The user can also give labels to all recorded actions for ease of search.
 ![craft4 test_adminos_settings_activity-logs_actions_site=default](https://user-images.githubusercontent.com/1510460/190848960-05dc091f-fe01-4e96-ade1-aba8600b00a9.png)
 
