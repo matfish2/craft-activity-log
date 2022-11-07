@@ -17,7 +17,6 @@ class Settings extends Model
     {
         return [
             [['recordSitePageRequests','recordSiteAjaxRequests','recordCpPageRequests','recordCpAjaxRequests','recordOnlyActions'], 'boolean'],
-            [['callback'],'function']
         ];
     }
 }

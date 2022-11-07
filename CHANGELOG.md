@@ -1,5 +1,9 @@
 # Release Notes for Activity Log
 
+## 1.1.3 - 2022-11-07
+### Fixed
+- Fix error when saving setting [#3](https://github.com/matfish2/craft-activity-log/issues/3)
+
 ## 1.1.2 - 2022-10-10
 ### Added
 - Added `requestFilter` setting [#2](https://github.com/matfish2/craft-activity-log/issues/2)
