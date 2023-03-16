@@ -69,6 +69,10 @@ class Plugin extends BasePlugin
             return false;
         }
 
+        if ($request->getPathInfo()==='activity-logs') {
+            return false;
+        }
+
         $isCp = $request->isCpRequest;
         $isAjax = $this->isAjax($request);
         $settings = self::getInstance()->getSettings();

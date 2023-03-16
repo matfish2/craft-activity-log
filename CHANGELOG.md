@@ -1,5 +1,9 @@
 # Release Notes for Activity Log
 
+## 1.1.4 - 2023-03-16
+### Fixed
+- Do not record requests to plugin
+
 ## 1.1.3 - 2022-11-07
 ### Fixed
 - Fix error when saving setting [#3](https://github.com/matfish2/craft-activity-log/issues/3)
