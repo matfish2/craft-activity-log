@@ -1,5 +1,9 @@
 # Release Notes for Activity Log
 
+## 1.1.5 - 2023-03-17
+### Fixed
+- IP Query: Search for string contains rather than exact match
+
 ## 1.1.4 - 2023-03-16
 ### Fixed
 - Do not record requests to plugin
