@@ -217,7 +217,7 @@ new Vue({
                 return '';
             }
 
-            return '?' + new URLSearchParams(JSON.parse(q)).toString()
+            return '?' + new URLSearchParams(JSON.parse(q)).toString().replaceAll('%2F','/',)
         }
     }
 })

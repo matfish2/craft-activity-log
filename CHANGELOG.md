@@ -1,5 +1,9 @@
 # Release Notes for Activity Log
 
+## 1.2.01 - 2023-03-17
+### Fixed
+- Readability: Replace html encoded slash in url with actual slash 
+
 ## 1.2.0 - 2023-03-17
 ### Added 
 - Add advanced payload filtering

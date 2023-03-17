@@ -7,7 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "watch-css": "npx tailwindcss -i ./src/assets/css/main.css -o ./src/assets/compiled/activity-log.css --watch",
     "watch-js": "npx mix watch -- --watch-options-poll=1000",
-    "prod": "export NODE_ENV=production && npx mix"
+    "prod": "npx mix --production"
   },
   "keywords": [],
   "author": "",
