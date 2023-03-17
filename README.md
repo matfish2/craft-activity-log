@@ -76,7 +76,8 @@ Click the "+" sign on the left-hand side of each row to expand a child row conta
 
 The plugin automatically replaces the CSRF Token and any payload key which contains the word "password" with a "[filtered]" mask.
 You can add additional keys to be filtered in two ways:
-a.General: Add it to the `filterPayloadKeys` on the setting file:
+
+a. General: Add it to the `filterPayloadKeys` on the setting file:
 ```php   
  'filterPayloadKeys'=>[
         'cvv','long_number'
