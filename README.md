@@ -91,9 +91,12 @@ b. Specific: If you only want to filter a certain key from specific requests you
                 return 'cvv';
          }
 
+        // Don't add any key to the list
         return false;
       }
+]
 ```
+
 ### Pruning Data
 
 You can prune (delete) data before that last X days using the following console command:
