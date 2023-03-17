@@ -72,6 +72,27 @@ Click the "+" sign on the left-hand side of each row to expand a child row conta
 
 ![craft4 test_adminos_activity-log_site=default (4)](https://user-images.githubusercontent.com/1510460/175233957-eeb453c1-8b18-448e-af7a-c476f3ac9cb5.png)
  
+### Payload Filtering
+
+The plugin automatically replaces the CSRF Token and any payload key which contains the word "password" with a "[filtered]" mask.
+You can add additional keys to be filtered in two ways:
+a.General: Add it to the `filterPayloadKeys` on the setting file:
+```php   
+ 'filterPayloadKeys'=>[
+        'cvv','long_number'
+    ]
+```
+b. Specific: If you only want to filter a certain key from specific requests you can use the `filterPayloadCallbacks` array instead, e.g:
+```php
+ 'filterPayloadCallbacks'=> [
+     function(\craft\web\Request $request) {
+        if (str_contains($request->getUrl(),'add-credit-card')) {
+                return 'cvv';
+         }
+
+        return false;
+      }
+```
 ### Pruning Data
 
 You can prune (delete) data before that last X days using the following console command:

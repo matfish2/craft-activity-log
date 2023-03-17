@@ -13,6 +13,9 @@ class Settings extends Model
     public bool $recordOnlyActions = false;
     public ?\Closure $requestFilter = null;
 
+    public array $filterPayloadKeys = [];
+    public array $filterPayloadCallbacks = [];
+
     public function rules() : array
     {
         return [

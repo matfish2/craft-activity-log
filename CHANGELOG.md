@@ -1,5 +1,9 @@
 # Release Notes for Activity Log
 
+## 1.2.0 - 2023-03-17
+### Added 
+- Add advanced payload filtering
+
 ## 1.1.5 - 2023-03-17
 ### Fixed
 - IP Query: Search for string contains rather than exact match

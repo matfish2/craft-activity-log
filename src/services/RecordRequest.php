@@ -8,6 +8,7 @@ use Carbon\Carbon;
 use Craft;
 use craft\web\Request;
 use craft\web\Response;
+use matfish\ActivityLog\Plugin;
 use yii\base\Event;
 use matfish\ActivityLog\records\ActivityLog as ActivityLogRecord;
 use matfish\ActivityLog\models\ActivityLog as ActivityLogModel;
@@ -107,23 +108,36 @@ class RecordRequest
         $payload = $this->request->getBodyParams();
 
         if ($payload) {
-            if (isset($payload['CRAFT_CSRF_TOKEN'])) {
-                $payload['CRAFT_CSRF_TOKEN'] = '[filtered]';
-            }
-
-            $passwordKeys = [];
+            $filterableKeys = $this->getFilterableKeys($payload);
 
             foreach (array_keys($payload) as $key) {
-                if (str_contains($key, 'password')) {
-                    $passwordKeys[] = $key;
+                if (in_array($key, $filterableKeys, true)) {
+                    $payload[$key] = '[filtered]';
                 }
-            }
-
-            foreach ($passwordKeys as $key) {
-                $payload[$key] = '[filtered]';
             }
         }
 
         return $payload ? json_encode($payload, JSON_THROW_ON_ERROR) : null;
+    }
+
+    private function getFilterableKeys($payload): array
+    {
+        $settings = Plugin::getInstance()->getSettings();
+        $keys = array_merge(['CRAFT_CSRF_TOKEN'], $settings->filterPayloadKeys);
+
+        foreach ($settings->filterPayloadCallbacks as $callback) {
+            if ($key = $callback($this->request)) {
+                $keys[] = $key;
+            }
+        }
+
+        foreach (array_keys($payload) as $key) {
+            if (str_contains($key, 'password')) {
+                $keys[] = $key;
+            }
+        }
+
+        return $keys;
+
     }
 }
