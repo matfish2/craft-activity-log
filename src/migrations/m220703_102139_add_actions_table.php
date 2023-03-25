@@ -2,10 +2,8 @@
 
 namespace matfish\ActivityLog\migrations;
 
-use Craft;
 use craft\db\Migration;
-use matfish\ActivityLog\records\ActivityLogAction;
-use matfish\ActivityLog\services\CreateActionsTable;
+use matfish\ActivityLog\services\migration\CreateActionsTable;
 
 /**
  * m220703_102139_add_actions_table migration.

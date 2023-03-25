@@ -1,7 +1,7 @@
 <?php
 
 
-namespace matfish\ActivityLog\services;
+namespace matfish\ActivityLog\services\migration;
 
 
 use craft\db\Migration;

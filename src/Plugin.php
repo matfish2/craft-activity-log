@@ -10,13 +10,12 @@ use matfish\ActivityLog\models\Settings;
 use craft\base\Plugin as BasePlugin;
 use Craft;
 use yii\base\Event;
-use yii\web\NotFoundHttpException;
 
 class Plugin extends BasePlugin
 {
     public bool $hasCpSection = true;
     public bool $hasCpSettings = true;
-    public string $schemaVersion = '1.0.1';
+    public string $schemaVersion = '1.0.2';
 
     public function init()
     {
@@ -69,7 +68,7 @@ class Plugin extends BasePlugin
             return false;
         }
 
-        if ($request->getPathInfo()==='activity-logs') {
+        if ($request->getPathInfo() === 'activity-logs') {
             return false;
         }
 
@@ -119,6 +118,7 @@ class Plugin extends BasePlugin
     {
         Event::on(UrlManager::class, UrlManager::EVENT_REGISTER_CP_URL_RULES, function (RegisterUrlRulesEvent $event): void {
             $rules = [
+                'activity-logs/stats' => 'activity-logs/activity-log/stats',
                 'settings/activity-logs' => 'activity-logs/settings/index',
                 'settings/activity-logs/actions' => 'activity-logs/actions/index',
                 'settings/activity-logs/settings' => 'activity-logs/settings/settings',
@@ -138,5 +138,19 @@ class Plugin extends BasePlugin
         Craft::$app->controller->redirect($url);
 
         return '';
+    }
+
+    public function getCpNavItem(): ?array
+    {
+        $item = parent::getCpNavItem();
+
+        $item['label'] = 'Activity Logs';
+
+        $item['subnav'] = [
+            'logs' => ['label' => 'Logs', 'url' => 'activity-logs'],
+            'stats' => ['label' => 'Statistics', 'url' => 'activity-logs/stats']
+        ];
+
+        return $item;
     }
 }

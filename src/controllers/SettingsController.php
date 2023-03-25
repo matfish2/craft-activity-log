@@ -3,9 +3,7 @@
 
 namespace matfish\ActivityLog\controllers;
 
-
 use Craft;
-use matfish\ActivityLog\Plugin;
 use craft\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\web\Response;

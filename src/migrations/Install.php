@@ -4,7 +4,8 @@ namespace matfish\ActivityLog\migrations;
 
 
 use craft\db\Migration;
-use matfish\ActivityLog\services\CreateActionsTable;
+use matfish\ActivityLog\services\migration\CreateActionsTable;
+use matfish\ActivityLog\services\migration\CreateWidgetsTable;
 
 class Install extends Migration
 {
@@ -38,6 +39,9 @@ class Install extends Migration
             (new CreateActionsTable())->execute($this);
         }
 
+        if (!$this->db->tableExists('{{%activitylog_widgets}}')) {
+            (new CreateWidgetsTable())->execute($this);
+        }
     }
 
     public function safeDown()
@@ -48,6 +52,10 @@ class Install extends Migration
 
         if ($this->db->tableExists('{{%activitylog_actions}}')) {
             $this->dropTable('{{%activitylog_actions}}');
+        }
+
+          if ($this->db->tableExists('{{%activitylog_widgets}}')) {
+            $this->dropTable('{{%activitylog_widgets}}');
         }
     }
 }

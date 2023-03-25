@@ -1,0 +1,159 @@
+{% do view.registerAssetBundle("matfish\\ActivityLog\\ActivityLogStatsAssetBundle") %}
+
+{% extends "_layouts/cp" %}
+{% set title = "Statistics"|t('stats') %}
+{% set selectedSubnavItem = 'stats' %}
+{% import '_includes/forms' as forms %}
+
+{% block actionButton %}
+    <div class="buttons">
+        <div id="stats-filters" style="display:flex">
+            <date-range-picker start-date="{{ now | date_modify('-10 day')| date }}"
+                               @selected="setDateRange"></date-range-picker>
+            <div style="position:relative;top:4px;">
+                <button type="button" id="statsWidgetFiltersBtn" class="btn icon filter"
+                        title="{{ 'Filters'|t('app') }}"
+                        @click="toggleFilters"
+                        aria-label="{{ 'Filters'|t('app') }}" aria-expanded="false"></button>
+
+                <div class="filters"
+                     ref="filters"
+                     style="min-width:250px;left:-200px;position:absolute;background:white;padding:10px;margin:0 auto;display:none;">
+                    <table>
+                        <tbody>
+                        <tr>
+                            <td>Is CP?</td>
+                            <td>
+                                <select name="isCp" id="isCp" @change="updateFilter('isCp',$event.target.value)">
+                                    <option value="">Select</option>
+                                    <option value="1">Yes</option>
+                                    <option value="0">No</option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Is Ajax?</td>
+                            <td>
+                                <select name="isAjax" id="isAjax" @change="updateFilter('isAjax',$event.target.value)">
+                                    <option value="">Select</option>
+                                    <option value="1">Yes</option>
+                                    <option value="0">No</option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Site</td>
+                            <td>
+                                <select name="siteId" id="siteId" @change="updateFilter('siteId',$event.target.value)">
+                                    <option value="">Select Site</option>
+                                    {% for site in sites %}
+                                        <option value="{{ site.id }}">{{ site.name }}</option>
+                                    {% endfor %}
+                                </select>
+                            </td>
+                        </tr>
+                         <tr>
+                            <td>User</td>
+                            <td>
+                                <select name="userId" id="userId" @change="updateFilter('userId',$event.target.value)">
+                                    <option value="">Select User</option>
+                                    {% for user in users %}
+                                        <option value="{{ user.id }}">{{ user.name }}</option>
+                                    {% endfor %}
+                                </select>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        </div>
+        {% if widgetTypes|filter(t => t.selectable and not t.exists)|length %}
+            <div class="newwidget btngroup" style="position:relative;">
+                <button type="button" id="newwidgetmenubtn" class="btn menubtn add icon" aria-controls="new-widget-menu"
+                        data-disclosure-trigger>{{ 'New widget'|t('app') }}</button>
+                <div id="widget-menu" class="menu menu--disclosure newwidgetmenu" style="top:40px;"
+                     data-disclosure-menu>
+                    <ul>
+                        {% for type, info in widgetTypes|filter(t => t.selectable and not t.exists) %}
+                            <li>
+                                <form action="/{{ craft.app.config.general.cpTrigger }}/actions/activity-logs/statistics/create-widget"
+                                      method="POST">
+                                    <input type="hidden" name="type" value="{{ type }}">
+                                    <button type="submit" class="menu-option" tabindex="0"
+                                            data-name="{{ info.name }}">
+                                        {{ info.name }}
+                                    </button>
+                                </form>
+
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+        {% endif %}
+
+        <button type="button" id="statsWidgetManagerBtn" class="btn settings icon" title="{{ 'Settings'|t('app') }}"
+                aria-label="{{ 'Settings'|t('app') }}" aria-expanded="false"></button>
+    </div>
+{% endblock %}
+
+
+{% block main %}
+    <div id="dashboard-grid" class="grid">
+        {% for widget in widgets %}
+            {% set widgetHeadingId = "widget-heading-#{widget.id}" %}
+            <div class="item" data-colspan="{{ widget.colspan }}">
+                <div id="widget{{ widget.id }}" class="widget {{ widget.type|lower }}" data-id="{{ widget.id }}"
+                     data-type="{{ widget.type }}" data-title="{{ widget.title }}">
+                    <div class="front">
+                        <div class="pane">
+                            <div class="spinner body-loading"></div>
+                            {% if widget.title or widget.subtitle %}
+                                <div id="{{ widgetHeadingId }}" class="widget-heading">
+                                    {% if widget.title %}
+                                        <h2>{{ widget.title }}</h2>
+                                    {% endif %}
+                                    {% if widget.subtitle %}
+                                        <h5>{{ widget.subtitle }}</h5>
+                                    {% endif %}
+                                </div>
+                            {% endif %}
+                            <button role="button" class="settings icon hidden"
+                                    aria-label="{{ 'Widget settings'|t('app') }}"
+                                    aria-describedby="{{ widgetHeadingId }}" data-settings-toggle></button>
+                            <div class="body">
+                                {{ widget.bodyHtml|raw }}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="back hidden">
+                        <form class="pane">
+                            {{ hiddenInput('widgetId', widget.id) }}
+                            <h2 class="first">{{ "{type} Settings"|t('app', { type: widget.name }) }}</h2>
+                            <div class="settings"></div>
+                            <hr>
+                            <div class="buttons clearafter">
+                                {{ forms.submitButton({label: 'Save'|t('app'), spinner: true}) }}
+                                {{ forms.button({label: 'Cancel'|t('app')}) }}
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+
+    <script>
+        window.cpTrigger = '{{ craft.app.config.general.cpTrigger }}';
+        window.widgetTypes = {{ widgetTypes | json_encode | raw }}
+    </script>
+
+    <style>
+        .icon.filter:before {
+            content:"filter"
+        }
+    </style>
+{% endblock %}
+

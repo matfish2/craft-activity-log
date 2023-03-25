@@ -42,16 +42,18 @@ import {format} from 'date-fns'
 
 export default {
   name: "DateRangePicker",
-  props: ['value'],
+  props: ['value','startDate'],
   data() {
+    let startDate = this.startDate ? new Date(this.startDate) : new Date()
     return {
-      start: format(new Date(),'dd/MM/yyyy'),
+      start: format(startDate,'dd/MM/yyyy'),
       end: format(new Date(),'dd/MM/yyyy')
     }
   },
   mounted() {
     new DateRangePicker(this.$refs.datepicker, {
       format: 'dd/mm/yyyy',
+
     });
 
     this.$refs.start.addEventListener('changeDate', (e) => {
