@@ -101,7 +101,7 @@ b. Specific: If you only want to filter a certain key from specific requests you
 ![craft4 ddev site_admin_activity-logs_stats (1)](https://user-images.githubusercontent.com/1510460/227717790-51cc3998-f496-4ec3-9346-50e2b443dc14.png)
 The statistics page provides some insights gleaned from the raw data.
 Similar to Craft's dashboard widgets, you can add and remove widgets, as well as change the order and the column span.
-The data can be filered by:
+The data can be filtered by:
 1. Date Range
 2. Site Id
 3. User Id
