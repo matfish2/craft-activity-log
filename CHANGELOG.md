@@ -1,5 +1,9 @@
 # Release Notes for Activity Log
 
+## 1.3.1 - 2023-03-28
+### Added
+- Requests per user widget
+
 ## 1.3.0 - 2023-03-25
 ### Added
 - Add statistics page
