@@ -9,7 +9,7 @@ class RequestVerbs extends Stats
 
     protected function getData(): array
     {
-        $res = $this->query()->select(['method', 'count(*) n'])->groupBy('method')->all();
+        $res = $this->query()->select(['[[method]]', 'count(*) n'])->groupBy('[[method]]')->all();
 
         return $this->toKeyValuePairs($res, 'method', 'n');
     }

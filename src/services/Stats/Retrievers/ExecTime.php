@@ -12,11 +12,11 @@ class ExecTime extends Stats
     {
         $res = $this->query()
             ->select([
-                'DATE(createdAt) d',
-                'ROUND(avg(execTime)*1000) ae'
+                'DATE([[createdAt]]) d',
+                'ROUND(avg([[execTime]])*1000) ae'
             ])
-            ->orderBy('DATE(createdAt)')
-            ->groupBy('DATE(createdAt)')->all();
+            ->orderBy('DATE([[createdAt]])')
+            ->groupBy('DATE([[createdAt]])')->all();
 
         return $this->toKeyValuePairs($res, 'd', 'ae');
     }

@@ -10,12 +10,12 @@ class ResponseCode extends Stats
     {
         $records = $this->query()
             ->select([
-                'responseCode',
+                '[[responseCode]]',
                 'COUNT(*) n'
             ])
-            ->andWhere('responseCode is not null')
-            ->orderBy('responseCode')
-            ->groupBy('responseCode')
+            ->andWhere('[[responseCode]] is not null')
+            ->orderBy('[[responseCode]]')
+            ->groupBy('[[responseCode]]')
             ->all();
 
         $res = [

@@ -11,14 +11,15 @@ import DailyRequests from './widgets/DailyRequests';
 import ResponseCode from './widgets/ResponseCode';
 import RequestVerbs from './widgets/RequestVerbs';
 import ExecTime from './widgets/ExecTime'
-
+import RequestsPerUser from './widgets/RequestsPerUser'
 export default {
   name: "ActivityLogsStatsWidget",
   components: {
     DailyRequests,
     ResponseCode,
     RequestVerbs,
-    ExecTime
+    ExecTime,
+    RequestsPerUser
   },
   props: {
     name: {
@@ -32,7 +33,8 @@ export default {
     }
   },
   async mounted() {
-    this.getData()
+    await this.getData()
+
     this.$parent.$watch('filters', (val) => {
       this.getData()
     }, {deep: true})

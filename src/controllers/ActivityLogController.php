@@ -16,6 +16,7 @@ use matfish\ActivityLog\services\Stats\WidgetsHandler;
 use matfish\ActivityLog\services\VueTablesActivityLogRetriever;
 use matfish\ActivityLog\widgets\DailyRequestsWidget;
 use matfish\ActivityLog\widgets\ExecTimeWidget;
+use matfish\ActivityLog\widgets\RequestPerUserWidget;
 use matfish\ActivityLog\widgets\ResponseCodeWidget;
 use matfish\ActivityLog\widgets\VerbsWidget;
 use yii\web\Response;
@@ -35,6 +36,7 @@ class ActivityLogController extends \craft\web\Controller
             ExecTimeWidget::class,
             ResponseCodeWidget::class,
             VerbsWidget::class,
+            RequestPerUserWidget::class
         ];
 
         $widgetTypeInfo = [];
@@ -54,11 +56,11 @@ class ActivityLogController extends \craft\web\Controller
             $settingsJs = (string)$view->clearJsBuffer(false);
 
             $class = get_class($widget);
-            $cls = explode("\\",$class);
-            $cl = str_replace("Widget","",last($cls));
+            $cls = explode("\\", $class);
+            $cl = str_replace("Widget", "", last($cls));
 
             $widgetTypeInfo[$class] = [
-                'exists'=>(bool)ActivityLogWidget::findOne(['type'=>$cl]),
+                'exists' => (bool)ActivityLogWidget::findOne(['type' => $cl]),
                 'iconSvg' => $this->_getWidgetIconSvg($widget),
                 'name' => $widget::displayName(),
                 'maxColspan' => $widget::maxColspan(),
@@ -75,7 +77,7 @@ class ActivityLogController extends \craft\web\Controller
 
         // Assemble the list of existing widgets
         $variables['widgets'] = [];
-        $widgets =(new WidgetsHandler)->getAll();
+        $widgets = (new WidgetsHandler)->getAll();
         $allWidgetJs = '';
 
         foreach ($widgets as $widget) {
@@ -119,12 +121,12 @@ class ActivityLogController extends \craft\web\Controller
 
         $variables['widgetTypes'] = $widgetTypeInfo;
         $variables['sites'] = Site::find()->select(['id', 'name'])->all();
-        $variables['users'] =  array_map(function($user) {
+        $variables['users'] = array_map(function ($user) {
             return [
-                'id'=>$user['id'],
-                'name'=>$user['fullName'] ?: $user['username']
+                'id' => $user['id'],
+                'name' => $user['fullName'] ?: $user['username']
             ];
-        }, User::find()->select(['id','username','fullName'])->all());
+        }, User::find()->select(['id', 'username', 'fullName'])->all());
 
         return $this->renderTemplate('activity-logs/stats', $variables);
     }
