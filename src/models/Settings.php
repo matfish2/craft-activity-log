@@ -4,13 +4,13 @@ use craft\base\Model;
 
 class Settings extends Model
 {
-    public bool $recordSitePageRequests = true;
-    public bool $recordSiteAjaxRequests = true;
+    public $recordSitePageRequests = true;
+    public $recordSiteAjaxRequests = true;
 
-    public bool $recordCpPageRequests = true;
-    public bool $recordCpAjaxRequests = false;
+    public $recordCpPageRequests = true;
+    public $recordCpAjaxRequests = false;
 
-    public bool $recordOnlyActions = false;
+    public $recordOnlyActions = false;
 
     public function rules() : array
     {

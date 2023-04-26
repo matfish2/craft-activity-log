@@ -13,7 +13,7 @@ use matfish\ActivityLog\models\ActivityLog as ActivityLogModel;
 
 class RecordRequest
 {
-    protected Request $request;
+    protected $request;
 
     public function __construct(Request $request)
     {

@@ -8,17 +8,17 @@ use craft\base\Model;
 
 class ActivityLog extends Model
 {
-    public ?int $userId;
-    public ?float $execTime;
-    public string $url;
-    public string $method;
-    public ?string $query;
-    public ?string $payload;
-    public string $ip;
-    public string $userAgent;
-    public bool $isAjax;
-    public int $siteId;
-    public bool $isCp;
-    public bool $isAction;
-    public ?string $actionSegments;
+    public $userId;
+    public $execTime;
+    public $url;
+    public $method;
+    public $query;
+    public $payload;
+    public $ip;
+    public $userAgent;
+    public $isAjax;
+    public $siteId;
+    public $isCp;
+    public $isAction;
+    public $actionSegments;
 }

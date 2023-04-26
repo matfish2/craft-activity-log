@@ -9,7 +9,7 @@ use yii\helpers\Console;
 
 class LogsController extends Controller
 {
-    public int $days = 30;
+    public $days = 30;
 
     public function options($actionID): array
     {
