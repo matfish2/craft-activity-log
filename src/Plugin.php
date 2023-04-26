@@ -40,7 +40,7 @@ class Plugin extends BasePlugin
         return new Settings();
     }
 
-    protected function settingsHtml(): null|string
+    protected function settingsHtml(): ?string
     {
         return \Craft::$app->getView()->renderTemplate(
             'activity-logs/settings',
