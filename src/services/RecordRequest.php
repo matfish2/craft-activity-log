@@ -96,11 +96,11 @@ class RecordRequest
     }
 
     /**
-     * @param object|array $payload
-     * @return false|string|null
+     * @param $payload
+     * @return
      * @throws \JsonException
      */
-    protected function getPayload(): string|null|false
+    protected function getPayload()
     {
         $payload = $this->request->getBodyParams();
 
