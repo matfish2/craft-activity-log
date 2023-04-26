@@ -46,7 +46,7 @@ class RecordRequest
         $model = new ActivityLogModel([
             'userId' => Craft::$app->user->id ?? null,
             'url' => $ps[0],
-            'query' => $query ? json_encode($query, JSON_THROW_ON_ERROR) : null,
+            'query' => $query ? json_encode($query) : null,
             'payload' => $payload,
             'isAjax' => $this->isAjax(),
             'method' => $req->getMethod(),
@@ -122,6 +122,6 @@ class RecordRequest
             }
         }
 
-        return $payload ? json_encode($payload, JSON_THROW_ON_ERROR) : null;
+        return $payload ? json_encode($payload) : null;
     }
 }

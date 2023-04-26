@@ -21,7 +21,7 @@ class VueTablesActivityLogRetriever
             ]);
         $filters = $req->getQueryParam('query');
         $createdAt = $req->getQueryParam('dateCreated');
-        $createdAt = $createdAt ? json_decode($createdAt, true, 512, JSON_THROW_ON_ERROR) : null;
+        $createdAt = $createdAt ? json_decode($createdAt, true) : null;
 
         $filters = $filters ? json_decode($filters, true) : [];
         $createdAtStart = $createdAt ? $createdAt['start'] : Carbon::today()->format('d/m/Y');
