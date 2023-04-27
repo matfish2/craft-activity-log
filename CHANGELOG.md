@@ -1,5 +1,12 @@
 # Release Notes for Activity Log
 
+## 1.3.2 - 2023-04-27
+### Added
+- Actions widget (Note: Only labeled actions are displayed)
+
+### Fixed
+- "Others" category on Requests per User and Actions widgets
+
 ## 1.3.1 - 2023-03-28
 ### Added
 - Requests per user widget

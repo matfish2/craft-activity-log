@@ -10,7 +10,7 @@ class DailyRequests extends Stats
 
     public function getData(): array
     {
-        $res =  $this->query()
+        $res = $this->query()
             ->select([
                 'DATE(createdAt) d',
                 'count(*) n'
@@ -18,13 +18,14 @@ class DailyRequests extends Stats
             ->orderBy('DATE(createdAt)')
             ->groupBy('DATE(createdAt)')->all();
 
-        return $this->toKeyValuePairs($res,'d','n');
+        return $this->toKeyValuePairs($res, 'd', 'n');
     }
 
-    protected function transformLabels($labels) : array {
-        return array_map(static function($label) {
+    protected function transformLabels($labels): array
+    {
+        return array_map(static function ($label) {
             return Carbon::parse($label)->format('d/m');
-        },$labels);
+        }, $labels);
     }
 
 }

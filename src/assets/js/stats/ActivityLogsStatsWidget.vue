@@ -12,6 +12,8 @@ import ResponseCode from './widgets/ResponseCode';
 import RequestVerbs from './widgets/RequestVerbs';
 import ExecTime from './widgets/ExecTime'
 import RequestsPerUser from './widgets/RequestsPerUser'
+import Actions from './widgets/Actions'
+
 export default {
   name: "ActivityLogsStatsWidget",
   components: {
@@ -19,7 +21,8 @@ export default {
     ResponseCode,
     RequestVerbs,
     ExecTime,
-    RequestsPerUser
+    RequestsPerUser,
+    Actions
   },
   props: {
     name: {

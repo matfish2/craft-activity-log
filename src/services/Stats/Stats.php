@@ -32,23 +32,23 @@ abstract class Stats
     protected function query(): Query
     {
         $q = (new Query())->from('{{%activitylog}}')
-            ->where("createdAt>='{$this->filters['start']}'")
-            ->andWhere("createdAt<='{$this->filters['end']}'");
+            ->where("{{%activitylog}}.[[createdAt]]>='{$this->filters['start']}'")
+            ->andWhere("{{%activitylog}}.[[createdAt]]<='{$this->filters['end']}'");
 
         if (isset($this->filters['isCp'])) {
-            $q->andWhere("isCp={$this->filters['isCp']}");
+            $q->andWhere("{{%activitylog}}.[[isCp]]={$this->filters['isCp']}");
         }
 
         if (isset($this->filters['isAjax'])) {
-            $q->andWhere("isAjax={$this->filters['isAjax']}");
+            $q->andWhere("{{%activitylog}}.[[isAjax]]={$this->filters['isAjax']}");
         }
 
         if (isset($this->filters['siteId'])) {
-            $q->andWhere("siteId={$this->filters['siteId']}");
+            $q->andWhere("{{%activitylog}}.[[siteId]]={$this->filters['siteId']}");
         }
 
         if (isset($this->filters['userId'])) {
-            $q->andWhere("userId={$this->filters['userId']}");
+            $q->andWhere("{{%activitylog}}.[[userId]]={$this->filters['userId']}");
         }
 
         return $q;

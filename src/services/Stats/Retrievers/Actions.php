@@ -5,7 +5,7 @@ namespace matfish\ActivityLog\services\Stats\Retrievers;
 use matfish\ActivityLog\services\Stats\OthersTrait;
 use matfish\ActivityLog\services\Stats\Stats;
 
-class RequestsPerUser extends Stats
+class Actions extends Stats
 {
     use OthersTrait;
 
@@ -14,22 +14,15 @@ class RequestsPerUser extends Stats
     protected function getData(): array
     {
         $res = $this->query()
-            ->select(['[[userId]]', "IF(([[fullName]] IS NULL OR [[fullName]]=''), {{%users}}.[[username]], {{%users}}.[[fullName]]) name", 'count(*) n'])
+            ->select(['{{%activitylog_actions}}.[[label]] name', 'count(*) n'])
+            ->andWhere('{{%activitylog}}.[[isAction]]=1')
             ->innerJoin('{{%users}}', '{{%users}}.[[id]]={{%activitylog}}.[[userId]]')
+            ->innerJoin('{{%activitylog_actions}}', '{{%activitylog_actions}}.[[action]]={{%activitylog}}.[[actionSegments]]')
             ->orderBy('count(*) DESC')
-            ->groupBy('[[userId]]')->all();
+            ->groupBy('[[actionSegments]]')->all();
 
         $resWithOther = $this->groupOthers($res);
 
         return $this->toKeyValuePairs($resWithOther, 'name', 'n');
     }
-
-    protected function transformValues($values): array
-    {
-        return array_map(static function ($value) {
-            return (int)$value;
-        }, $values);
-    }
-
-
 }

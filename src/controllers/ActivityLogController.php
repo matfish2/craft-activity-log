@@ -14,6 +14,7 @@ use matfish\ActivityLog\records\ActivityLogAction;
 use matfish\ActivityLog\records\ActivityLogWidget;
 use matfish\ActivityLog\services\Stats\WidgetsHandler;
 use matfish\ActivityLog\services\VueTablesActivityLogRetriever;
+use matfish\ActivityLog\widgets\ActionsWidget;
 use matfish\ActivityLog\widgets\DailyRequestsWidget;
 use matfish\ActivityLog\widgets\ExecTimeWidget;
 use matfish\ActivityLog\widgets\RequestPerUserWidget;
@@ -36,7 +37,8 @@ class ActivityLogController extends \craft\web\Controller
             ExecTimeWidget::class,
             ResponseCodeWidget::class,
             VerbsWidget::class,
-            RequestPerUserWidget::class
+            RequestPerUserWidget::class,
+            ActionsWidget::class
         ];
 
         $widgetTypeInfo = [];
