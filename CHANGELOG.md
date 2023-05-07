@@ -1,5 +1,9 @@
 # Release Notes for Activity Log
 
+## 1.3.3 - 2023-05-07
+### Fixed
+- Get CP trigger for Add Widget Redirect URL
+
 ## 1.3.2 - 2023-04-27
 ### Added
 - Actions widget (Note: Only labeled actions are displayed)

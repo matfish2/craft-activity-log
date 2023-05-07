@@ -59,7 +59,7 @@ class StatisticsController extends Controller
 
         (new WidgetsHandler())->save($type);
 
-        return $this->redirect('/admin/activity-logs/stats');
+        return $this->redirect('/' . \Craft::$app->config->general->cpTrigger . '/activity-logs/stats');
     }
 
     public function actionReorderWidgets()
@@ -87,7 +87,5 @@ class StatisticsController extends Controller
         (new WidgetsHandler())->changeColspan($widgetId, $colspan);
 
         return $this->asSuccess();
-
-
     }
 }
