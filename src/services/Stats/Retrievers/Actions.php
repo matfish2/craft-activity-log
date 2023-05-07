@@ -16,7 +16,7 @@ class Actions extends Stats
         $res = $this->query()
             ->select(['{{%activitylog_actions}}.[[label]] name', 'count(*) n'])
             ->andWhere('{{%activitylog}}.[[isAction]]=1')
-            ->innerJoin('{{%users}}', '{{%users}}.[[id]]={{%activitylog}}.[[userId]]')
+            ->leftJoin('{{%users}}', '{{%users}}.[[id]]={{%activitylog}}.[[userId]]')
             ->innerJoin('{{%activitylog_actions}}', '{{%activitylog_actions}}.[[action]]={{%activitylog}}.[[actionSegments]]')
             ->orderBy('count(*) DESC')
             ->groupBy('[[actionSegments]]')->all();
