@@ -45,7 +45,7 @@ class ActionsController extends Controller
         // 3. merge 1 and 2
         $actions = array_merge($actions1, $actions2);
 
-        return $this->renderTemplate('activity-logs/settings/actions', ['actions' => $actions]);
+        return $this->renderTemplate('activity-logs/actions', ['actions' => $actions]);
     }
 
     /**

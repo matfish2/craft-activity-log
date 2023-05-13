@@ -1,6 +1,8 @@
-{% extends "activity-logs/settings/_layout" %}
+{% extends "_layouts/cp" %}
 {% import '_includes/forms.twig' as forms %}
-{% set selectedNavItem = 'actions' %}
+
+{% set title = "Actions"|t('actions') %}
+{% set selectedSubnavItem = 'actions' %}
 
 {% set content %}
     <form method="post" accept-charset="UTF-8" data-saveshortcut="">
@@ -9,7 +11,7 @@
 
         <input type="hidden" name="action" value="activity-logs/actions/save-actions">
         <input type="hidden" name="pluginHandle" value="activity-logs">
-        <input type="hidden" name="redirect" value="{{ 'settings/activity-logs/actions'|hash }}">
+        <input type="hidden" name="redirect" value="{{ 'activity-logs/actions'|hash }}">
         {{ forms.editableTable({
             name:'actions',
             id:'actionsTable',

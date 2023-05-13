@@ -4,6 +4,7 @@ namespace matfish\ActivityLog;
 
 use craft\events\RegisterUrlRulesEvent;
 use craft\helpers\UrlHelper;
+use craft\web\Request;
 use craft\web\UrlManager;
 use matfish\ActivityLog\services\RecordRequest;
 use matfish\ActivityLog\models\Settings;
@@ -68,7 +69,8 @@ class Plugin extends BasePlugin
             return false;
         }
 
-        if ($request->getPathInfo() === 'activity-logs') {
+        // Don't record the plugin requests
+        if ($this->isActivityLogsRequest($request)) {
             return false;
         }
 
@@ -116,11 +118,11 @@ class Plugin extends BasePlugin
      */
     private function _registerCpRoutes(): void
     {
-        Event::on(UrlManager::class, UrlManager::EVENT_REGISTER_CP_URL_RULES, function (RegisterUrlRulesEvent $event): void {
+        Event::on(UrlManager::class, UrlManager::EVENT_REGISTER_CP_URL_RULES, static function (RegisterUrlRulesEvent $event): void {
             $rules = [
                 'activity-logs/stats' => 'activity-logs/activity-log/stats',
+                'activity-logs/actions' => 'activity-logs/actions/index',
                 'settings/activity-logs' => 'activity-logs/settings/index',
-                'settings/activity-logs/actions' => 'activity-logs/actions/index',
                 'settings/activity-logs/settings' => 'activity-logs/settings/settings',
             ];
 
@@ -148,9 +150,15 @@ class Plugin extends BasePlugin
 
         $item['subnav'] = [
             'logs' => ['label' => 'Logs', 'url' => 'activity-logs'],
-            'stats' => ['label' => 'Statistics', 'url' => 'activity-logs/stats']
+            'stats' => ['label' => 'Statistics', 'url' => 'activity-logs/stats'],
+            'actions' => ['label' => 'Actions', 'url' => 'activity-logs/actions']
         ];
 
         return $item;
+    }
+
+    private function isActivityLogsRequest(Request $request) : bool
+    {
+        return ($request->isActionRequest && $request->getActionSegments()[0]==='activity-logs') || str_starts_with($request->getPathInfo(),'activity-logs');
     }
 }

@@ -1,5 +1,10 @@
 # Release Notes for Activity Log
 
+## 1.4.0 - 2023-05-13
+### Changed
+- Move Actions page from settings to nav bar 
+- Do not record any activity logs requests
+
 ## 1.3.4 - 2023-05-07
 ### Fixed
 - Action widget: Get anonymous actions
