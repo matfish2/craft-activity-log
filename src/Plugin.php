@@ -11,6 +11,7 @@ use matfish\ActivityLog\models\Settings;
 use craft\base\Plugin as BasePlugin;
 use Craft;
 use yii\base\Event;
+use craft\web\Application;
 
 class Plugin extends BasePlugin
 {
@@ -22,6 +23,7 @@ class Plugin extends BasePlugin
     {
         parent::init();
         $this->_registerCpRoutes();
+        $this->_registerEvents();
 
         if (Craft::$app->request->isCpRequest) {
             $this->controllerNamespace = 'matfish\\ActivityLog\\controllers';
@@ -32,14 +34,24 @@ class Plugin extends BasePlugin
         if (!$this->db->tableExists('{{%activitylog}}')) {
             return;
         }
+    }
 
-        if ($this->shouldRecord()) {
-            try {
-                (new RecordRequest(Craft::$app->request))->record();
-            } catch (\Throwable $e) {
-                echo $e->getMessage();
+    private function _registerEvents(): void
+    {
+        // Wait until Craft application has finished initializing before recording.
+        Event::on(
+            Application::class,
+            Application::EVENT_BEFORE_REQUEST,
+            function (Event $event) {
+                if ($this->shouldRecord()) {
+                    try {
+                        (new RecordRequest(Craft::$app->request))->record();
+                    } catch (\Throwable $e) {
+                        echo $e->getMessage();
+                    }
+                }
             }
-        }
+        ); 
     }
 
     protected function createSettingsModel(): Settings
