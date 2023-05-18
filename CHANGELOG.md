@@ -1,5 +1,9 @@
 # Release Notes for Activity Log
 
+## 1.4.1 - 2023-05-18
+### Fixed 
+- Defer recording until after craft is done initializing [#3](https://github.com/matfish2/craft-activity-log/pull/8). Courtesy of [@sjeng](https://github.com/sjeng) :pray:  
+
 ## 1.4.0 - 2023-05-13
 ### Changed
 - Move Actions page from settings to nav bar 
