@@ -47,9 +47,9 @@ class RecordRequest
 
         $model = new ActivityLogModel([
             'userId' => Craft::$app->user->id ?? null,
-            'url' => $ps[0],
-            'query' => $query ? json_encode($query, JSON_THROW_ON_ERROR) : null,
-            'payload' => $payload,
+            'url' => iconv('ISO-8859-1', 'UTF-8', $ps[0]),
+            'query' => $query ? iconv('ISO-8859-1', 'UTF-8', json_encode($query, JSON_THROW_ON_ERROR)) : null,
+            'payload' => iconv('ISO-8859-1', 'UTF-8', $payload),
             'isAjax' => $this->isAjax(),
             'method' => $req->getMethod(),
             'ip' => $req->getUserIP(),
