@@ -1,5 +1,9 @@
 # Release Notes for Activity Log
 
+## 1.4.2 - 2023-06-18
+### Fixed
+- Unicode for column url throws error when title is in Chinese [#9](https://github.com/matfish2/craft-activity-log/issues/9)
+
 ## 1.4.1 - 2023-05-18
 ### Fixed 
 - Defer recording until after craft is done initializing [#3](https://github.com/matfish2/craft-activity-log/pull/8). Courtesy of [@sjeng](https://github.com/sjeng) :pray:  
