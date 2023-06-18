@@ -47,9 +47,9 @@ class RecordRequest
 
         $model = new ActivityLogModel([
             'userId' => Craft::$app->user->id ?? null,
-            'url' => iconv('ISO-8859-1', 'UTF-8', $ps[0]),
-            'query' => $query ? iconv('ISO-8859-1', 'UTF-8', json_encode($query, JSON_THROW_ON_ERROR)) : null,
-            'payload' => iconv('ISO-8859-1', 'UTF-8', $payload),
+            'url' => $ps[0],
+            'query' => $query ? json_encode($query, JSON_THROW_ON_ERROR) : null,
+            'payload' => $payload,
             'isAjax' => $this->isAjax(),
             'method' => $req->getMethod(),
             'ip' => $req->getUserIP(),
@@ -76,7 +76,12 @@ class RecordRequest
         $record->actionSegments = $model->actionSegments;
         $record->createdAt = Carbon::now();
 
-        $record->save();
+        try {
+            $record->save();
+        } catch (\Exception $e) { // Fix https://github.com/matfish2/craft-activity-log/issues/9
+            $record->url =  iconv('iso-8859-1', 'utf-8', $record->url);
+            $record->save();
+        }
 
         $start = microtime(true);
 
