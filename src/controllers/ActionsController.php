@@ -13,7 +13,10 @@ class ActionsController extends Controller
 {
     public function actionIndex()
     {
-        // 1. Get all actions (not-native) from actions table
+        // 1. Get all natively labelled actions in order to exclude from page
+        $native = ActivityLogAction::find()->where('native=1')->all();
+
+        // 2. Get all non-native actions from actions table in order to allow editing
         $actions1 = ActivityLogAction::find()->where('native=0')->all();
         $actions1 = array_map(static function ($action) {
             return [
@@ -23,12 +26,18 @@ class ActionsController extends Controller
             ];
         }, $actions1);
 
-        $existingActions = array_map(static function ($action) {
+        // 3. Merge native and non-native actions in order to exclude from search in logs
+        $nonnative = array_map(static function ($action) {
             return "'" . $action['action'] . "'";
         }, $actions1);
 
+        $native = array_map(static function ($action) {
+            return "'" . $action->action . "'";
+        }, $native);
 
-        // 2. Get all unlabeled actions from activity logs table
+        $existingActions = array_merge($nonnative, $native);
+
+        // 4. Get all unlabeled actions from activity logs table
         $existingActionsExp = count($existingActions) > 0 ? implode(',', $existingActions) : "'xxx'";
         $actions2 = ActivityLog::find()->select('actionSegments')
             ->where('actionSegments is not null AND actionSegments not in (' . $existingActionsExp . ')')
@@ -42,7 +51,7 @@ class ActionsController extends Controller
             ];
         }, $actions2);
 
-        // 3. merge 1 and 2
+        // 5. merge actions from actions table with actions from logs table
         $actions = array_merge($actions1, $actions2);
 
         return $this->renderTemplate('activity-logs/actions', ['actions' => $actions]);

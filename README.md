@@ -58,7 +58,9 @@ return [
 The `$this` object in this context will be an instance of the request class (`craft\web\Request`).
 Only requests satisfying the condition (returning `true`) will be recorded.
 
-The user can also give labels to all recorded actions for ease of search.
+Actions are automatically labelled using a naming convention. E.g ["fields","save-group"] will become "Fields Save Group".
+This is relevant for the "Action" search dropdown on the Logs page and for the Actions widget on the Statistics page.
+In addition the user can optionally override this convention by giving explicit labels to recorded actions under the Actions page.
 ![craft4 test_adminos_settings_activity-logs_actions_site=default](https://user-images.githubusercontent.com/1510460/190848960-05dc091f-fe01-4e96-ade1-aba8600b00a9.png)
 
 Requests can be viewed and filtered under the Activity Log page.

@@ -10,6 +10,8 @@ use craft\helpers\Json;
 use craft\records\Site;
 use craft\web\assets\dashboard\DashboardAsset;
 use matfish\ActivityLog\ActivityLogAssetBundle;
+use matfish\ActivityLog\helpers\ActionSegmentsToLabel;
+use matfish\ActivityLog\records\ActivityLog;
 use matfish\ActivityLog\records\ActivityLogAction;
 use matfish\ActivityLog\records\ActivityLogWidget;
 use matfish\ActivityLog\services\Stats\WidgetsHandler;
@@ -138,10 +140,36 @@ class ActivityLogController extends \craft\web\Controller
         $res = [
             'sites' => Site::find()->select(['id', 'name'])->all(),
             'svgPath' => $this->getSvgPath(),
-            'actions' => ActivityLogAction::find()->all()
+            'actions' => $this->getActionsList()
         ];
 
         return $this->asJson($res);
+    }
+
+    protected function getActionsList(): array
+    {
+        $labeled = ActivityLogAction::find()->all();
+        $labeledArr = array_map(static function ($action) {
+            return "'" . $action['action'] . "'";
+        }, $labeled);
+
+        $labeledExp = count($labeledArr) > 0 ? implode(',', $labeledArr) : "'xxx'";
+
+        $unlabeled = ActivityLog::find()->select('actionSegments')
+            ->where('actionSegments is not null AND actionSegments not in (' . $labeledExp . ')')
+            ->groupBy('actionSegments')->all();
+
+        $unlabeled = array_map(/**
+         * @throws \JsonException
+         */ static function ($action) {
+            return [
+                'id' => null,
+                'action' => $action->actionSegments,
+                'label' => ActionSegmentsToLabel::convert($action->actionSegments)
+            ];
+        }, $unlabeled);
+
+        return array_merge($labeled, $unlabeled);
     }
 
     public function actionData(): Response

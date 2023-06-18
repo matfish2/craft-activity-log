@@ -1,5 +1,12 @@
 # Release Notes for Activity Log
 
+## 1.5.0 - 2023-06-18
+### Fixed
+- Do not load natively labeled actions on Actions page
+
+### Improved
+- Auto label unlabeled actions on Actions filter and Actions widget
+
 ## 1.4.2 - 2023-06-18
 ### Fixed
 - Unicode for column url throws error when title is in Chinese [#9](https://github.com/matfish2/craft-activity-log/issues/9)
