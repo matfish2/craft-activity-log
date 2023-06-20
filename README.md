@@ -49,7 +49,7 @@ For a more fine-grained control, **on top of** request type settings, you can us
 2. Define a `requestFilter` callback that returns a boolean. E.g:
 ```php
 <?php
-retur [
+return [
  'requestFilter' => function () {
         if ($this->isAjax) {
             return $this->isActionRequest && count($this->actionSegments) === 2 && $this->actionSegments[1] === 'save-draft';
