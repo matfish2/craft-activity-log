@@ -65,7 +65,9 @@ Only requests satisfying the condition (returning `true`) will be recorded.
 Actions are automatically labelled using a naming convention. E.g ["fields","save-group"] will become "Fields Save Group".
 This is relevant for the "Action" search dropdown on the Logs page and for the Actions widget on the Statistics page.
 In addition the user can optionally override this convention by giving explicit labels to recorded actions under the Actions page.
-![craft4 test_adminos_settings_activity-logs_actions_site=default](https://user-images.githubusercontent.com/1510460/190848960-05dc091f-fe01-4e96-ade1-aba8600b00a9.png)
+
+![Screenshot 2023-07-05 123908](https://github.com/matfish2/craft-activity-log/assets/1510460/b977f911-9783-4b77-894a-a0b693d63baa)
+
 
 Requests can be viewed and filtered under the Activity Log page.
 Click the "Columns" button to add or remove columns from the table on the fly:
@@ -107,6 +109,7 @@ b. Specific: If you only want to filter a certain key from specific requests you
 By default, searching in request payload is disabled in order to remove unnecessary clutter from the table controls.
 You can enable it in the Settings Page.
 ![Screenshot 2023-07-05 122958](https://github.com/matfish2/craft-activity-log/assets/1510460/5050e149-0872-464c-bc64-e00ff6586666)
+
 Note that you need to press enter or leave the field for the search to be triggered.
 
 ### Statistics
