@@ -32,6 +32,8 @@ class VueTablesActivityLogRetriever
         $action = $req->getQueryParam('actionSegments');
         $action = $action ? json_decode($action, true) : null;
 
+        $payload = $req->getQueryParam('payload');
+
         $page = $req->getQueryParam('page') ?? 1;
         $perPage = $req->getQueryParam('limit');
         $orderCol = $req->getQueryParam('orderBy') ?? 'createdAt';
@@ -66,6 +68,10 @@ class VueTablesActivityLogRetriever
             } else {
                 $q->andWhere("[[actionSegments]] LIKE '%$value%'");
             }
+        }
+
+        if ($payload) {
+            $q->andWhere("[[payload]] LIKE '%$payload%'");
         }
 
         $q->orderBy([$orderCol => $orderDir]);

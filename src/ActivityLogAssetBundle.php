@@ -20,7 +20,7 @@ class ActivityLogAssetBundle extends AssetBundle
         // define the relative path to CSS/JS files that should be registered with the page
         // when this asset bundle is registered
         $this->js = [
-            'compiled/activity-log.min.js?v=2',
+            'compiled/activity-log.min.js?v=3',
         ];
 
         $this->css = [

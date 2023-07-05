@@ -14,6 +14,11 @@
                         @loaded="loadingTable=false"
                         url="/{{ craft.app.config.general.cpTrigger }}?action=activity-logs/activity-log/data">
             <template slot="beforeLimit">
+                {% if craft.app.getPlugins().getPlugin('activity-logs').getSettings().enablePayloadSearch %}
+                <div class="m-2">
+                    <input type="text" placeholder="Search Payload" class="border p-2" @change="searchPayload($event.target.value)">
+                </div>
+                {% endif %}
                 <date-range-picker @selected="updateDateRange"></date-range-picker>
             </template>
 
@@ -103,11 +108,11 @@
                     </tr>
                     <tr class="bg-gray-100">
                         <th>Is Control Panel?</th>
-                        <td>{!! row.isCp==='1' ? 'Yes' : 'No' !!}</td>
+                        <td>{!! row.isCp === '1' ? 'Yes' : 'No' !!}</td>
                     </tr>
                     <tr>
                         <th>Is AJAX?</th>
-                        <td>{!! row.isAjax==='1' ? 'Yes' : 'No' !!}</td>
+                        <td>{!! row.isAjax === '1' ? 'Yes' : 'No' !!}</td>
                     </tr>
 
                     </tbody>

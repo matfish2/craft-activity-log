@@ -3,7 +3,8 @@
 {% set selectedNavItem = 'settings' %}
 {% set content %}
     <form method="post" accept-charset="UTF-8" data-saveshortcut="">
-
+        <h2>Requests</h2>
+        <hr>
         {{ csrfInput() }}
 
         <input type="hidden" name="action" value="activity-logs/settings/save-settings">
@@ -41,6 +42,15 @@
             label: 'Record Only Actions',
             name: 'settings[recordOnlyActions]',
             on: settings.recordOnlyActions
+        }) }}
+
+        <h2>Audit Trail</h2>
+        <hr>
+
+          {{ forms.lightswitchField({
+            label: 'Enable Payload Search',
+            name: 'settings[enablePayloadSearch]',
+            on: settings.enablePayloadSearch
         }) }}
 
         <div class="buttons">

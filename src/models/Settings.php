@@ -13,13 +13,15 @@ class Settings extends Model
     public bool $recordOnlyActions = false;
     public ?\Closure $requestFilter = null;
 
+    public bool $enablePayloadSearch = false;
+
     public array $filterPayloadKeys = [];
     public array $filterPayloadCallbacks = [];
 
-    public function rules() : array
+    public function rules(): array
     {
         return [
-            [['recordSitePageRequests','recordSiteAjaxRequests','recordCpPageRequests','recordCpAjaxRequests','recordOnlyActions'], 'boolean'],
+            [['recordSitePageRequests', 'recordSiteAjaxRequests', 'recordCpPageRequests', 'recordCpAjaxRequests', 'recordOnlyActions'], 'boolean'],
         ];
     }
 }

@@ -91,7 +91,7 @@ new Vue({
                     }
                 },
                 alwaysShowPerPageSelect: true,
-                customFilters: ['createdAt', 'actionSegments'],
+                customFilters: ['createdAt', 'actionSegments','payload'],
                 filterByColumn: true,
                 filterable: [
                     'url',
@@ -211,6 +211,9 @@ new Vue({
         },
         updateDateRange(val) {
             Event.$emit('vue-tables.activity-log.filter::createdAt', val)
+        },
+        searchPayload(val) {
+            Event.$emit('vue-tables.activity-log.filter::payload', val)
         },
         parseQuery(q) {
             if (!q) {

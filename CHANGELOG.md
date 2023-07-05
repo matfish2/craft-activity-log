@@ -1,5 +1,9 @@
 # Release Notes for Activity Log
 
+## 1.5.1 - 2023-07-05
+### Added
+- Add Payload Search (optional field, enable in Settings page)
+
 ## 1.5.0 - 2023-06-18
 ### Fixed
 - Do not load natively labeled actions on Actions page

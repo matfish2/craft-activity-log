@@ -42,7 +42,7 @@ Data points include:
 
 The user can control which request types to record under the Settings page.
 
-![craft4 test_adminos_settings_plugins_activity-log_site=default](https://user-images.githubusercontent.com/1510460/175233673-87f2f69d-0c45-4b0c-a3d9-7c231026989e.png)
+![Screenshot 2023-07-05 122540](https://github.com/matfish2/craft-activity-log/assets/1510460/a0eca755-4351-4e52-8c9d-847a8d38f9ca)
 
 For a more fine-grained control, **on top of** request type settings, you can use the `requestFilter` setting:
 1. In you project create a `config/activity-logs.php` file
@@ -102,6 +102,12 @@ b. Specific: If you only want to filter a certain key from specific requests you
       }
 ]
 ```
+
+### Payload Search
+By default, searching in request payload is disabled in order to remove unnecessary clutter from the table controls.
+You can enable it in the Settings Page.
+![Screenshot 2023-07-05 122958](https://github.com/matfish2/craft-activity-log/assets/1510460/5050e149-0872-464c-bc64-e00ff6586666)
+Note that you need to press enter or leave the field for the search to be triggered.
 
 ### Statistics
 ![craft4 ddev site_admin_activity-logs_stats (1)](https://user-images.githubusercontent.com/1510460/227717790-51cc3998-f496-4ec3-9346-50e2b443dc14.png)
