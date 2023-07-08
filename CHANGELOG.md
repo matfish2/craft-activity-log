@@ -1,5 +1,9 @@
 # Release Notes for Activity Log
 
+## 1.5.2 - 2023-07-08
+### Improved
+- Add a confirmation message to the prune command with number of days and date
+
 ## 1.5.1 - 2023-07-05
 ### Added
 - Add Payload Search (optional field, enable in Settings page)

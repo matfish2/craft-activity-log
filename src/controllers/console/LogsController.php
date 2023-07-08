@@ -18,13 +18,19 @@ class LogsController extends Controller
 
     public function actionPrune()
     {
-        $cutoff = Carbon::today()->subDays($this->days ?? 30);
+        $days = $this->days;
 
-        $this->stdout('Pruning records before ' . $cutoff->format('d-m-Y') . '...' . PHP_EOL, Console::FG_GREEN);
+        $cutoff = Carbon::today()->subDays($days);
 
-        ActivityLog::deleteAll(['<', 'createdAt', $cutoff->format('Y-m-d')]);
+        if ($this->confirm("Are you sure you want to permanently delete all records before the last {$days} days (" .$cutoff->format('d-m-Y') . ")?")) {
+            $this->stdout('Pruning records before ' . $cutoff->format('d-m-Y') . '...' . PHP_EOL, Console::FG_GREEN);
 
-        $this->stdout('Done!' . PHP_EOL, Console::FG_GREEN);
+            ActivityLog::deleteAll(['<', 'createdAt', $cutoff->format('Y-m-d')]);
+
+            $this->stdout('Done!' . PHP_EOL, Console::FG_GREEN);
+        } else {
+            $this->stdout('Aborted' . PHP_EOL, Console::FG_YELLOW);
+        }
 
         return 1;
     }
