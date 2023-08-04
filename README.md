@@ -1,5 +1,5 @@
 ## Craft Activity Log
-![craft4 test_adminos_activity-log_site=default (1)](https://user-images.githubusercontent.com/1510460/175233839-30d3f4ac-a3a3-4511-9c1d-b388e4225bf5.png)
+![activity_logs](https://github.com/matfish2/craft-activity-log/assets/1510460/2c52ed8f-9805-4203-85fe-69b453ced922)
 
 This plugin provides a detailed activity log for incoming web requests.
 
