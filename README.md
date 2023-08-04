@@ -113,7 +113,7 @@ You can enable it in the Settings Page.
 Note that you need to press enter or leave the field for the search to be triggered.
 
 ### Statistics
-![craft4 ddev site_admin_activity-logs_stats (1)](https://user-images.githubusercontent.com/1510460/227717790-51cc3998-f496-4ec3-9346-50e2b443dc14.png)
+![activity_logs_stats](https://github.com/matfish2/craft-activity-log/assets/1510460/824cf593-157e-4eb4-ba73-4365b75b2be0)
 The statistics page provides some insights gleaned from the raw data.
 Similar to Craft's dashboard widgets, you can add and remove widgets, as well as change the order and the column span.
 The data can be filtered by:
