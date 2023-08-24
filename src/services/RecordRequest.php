@@ -72,6 +72,8 @@ class RecordRequest
         $record->siteId = $model->siteId;
         $record->isAction = $model->isAction;
         $record->actionSegments = $model->actionSegments;
+        $record->dateCreated = Carbon::now();
+        $record->dateUpdated = Carbon::now();
 
         $record->save();
 
