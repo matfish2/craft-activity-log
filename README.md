@@ -44,6 +44,8 @@ The user can control which request types to record under the Settings page.
 
 ![Screenshot 2023-07-05 122540](https://github.com/matfish2/craft-activity-log/assets/1510460/a0eca755-4351-4e52-8c9d-847a8d38f9ca)
 
+### Advanced Request Filtering
+
 For a more fine-grained control, **on top of** request type settings, you can use the `requestFilter` setting:
 1. In you project create a `config/activity-logs.php` file
 2. Define a `requestFilter` callback that returns a boolean. E.g:
@@ -62,13 +64,14 @@ return [
 The `$this` object in this context will be an instance of the request class (`craft\web\Request`).
 Only requests satisfying the condition (returning `true`) will be recorded.
 
+### Action Requests
 Actions are automatically labelled using a naming convention. E.g ["fields","save-group"] will become "Fields Save Group".
 This is relevant for the "Action" search dropdown on the Logs page and for the Actions widget on the Statistics page.
 In addition the user can optionally override this convention by giving explicit labels to recorded actions under the Actions page.
 
 ![Screenshot 2023-07-05 123908](https://github.com/matfish2/craft-activity-log/assets/1510460/b977f911-9783-4b77-894a-a0b693d63baa)
 
-
+### Audit Trail UI
 Requests can be viewed and filtered under the Activity Log page.
 Click the "Columns" button to add or remove columns from the table on the fly:
 
