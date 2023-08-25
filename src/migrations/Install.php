@@ -3,6 +3,7 @@ namespace matfish\ActivityLog\migrations;
 
 
 use craft\db\Migration;
+use yii\db\Query;
 
 class Install extends Migration
 {
@@ -25,8 +26,8 @@ class Install extends Migration
                 'isAction'=>$this->boolean(),
                 'actionSegments'=>$this->string()->null(),
                 'responseCode'=>$this->smallInteger(),
-                'dateCreated'=>$this->timestamp(),
-                'dateUpdated'=>$this->timestamp(),
+                'dateCreated'=>$this->timestamp()->defaultExpression( 'CURRENT_TIMESTAMP'),
+                'dateUpdated'=>$this->timestamp()->defaultExpression('CURRENT_TIMESTAMP'),
                 'uid'=>$this->uid()
             ]);
 
