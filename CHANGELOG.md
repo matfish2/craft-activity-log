@@ -1,5 +1,9 @@
 # Release Notes for Activity Log
 
+## 0.1.9 - 2023-08-25
+### Added
+- Add `requestFilter` setting [#11](https://github.com/matfish2/craft-activity-log/issues/11)
+
 ## 0.1.8 - 2023-08-25
 ### Fixed
 - Use CURRENT_TIMESTAMP default expression for timestamps [#10](https://github.com/matfish2/craft-activity-log/issues/10)
