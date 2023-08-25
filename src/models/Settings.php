@@ -12,10 +12,12 @@ class Settings extends Model
 
     public $recordOnlyActions = false;
 
-    public function rules() : array
+    public $requestFilter = null;
+
+    public function rules(): array
     {
         return [
-            [['recordSitePageRequests','recordSiteAjaxRequests','recordCpPageRequests','recordCpAjaxRequests','recordOnlyActions'], 'boolean']
+            [['recordSitePageRequests', 'recordSiteAjaxRequests', 'recordCpPageRequests', 'recordCpAjaxRequests', 'recordOnlyActions'], 'boolean']
         ];
     }
 }
