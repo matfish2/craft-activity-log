@@ -1,5 +1,9 @@
 # Release Notes for Activity Log
 
+## 1.5.3 - 2023-08-26
+### Improved
+- Add `interactive` option to prune command
+
 ## 1.5.2 - 2023-07-08
 ### Improved
 - Add a confirmation message to the prune command with number of days and date

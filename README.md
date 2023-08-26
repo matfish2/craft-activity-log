@@ -136,6 +136,8 @@ php craft activity-logs/logs/prune --days=30
 ```
 If omitted the `days` option defaults to 30 days.
 
+> Note: If you are running the command as a cron job add the `--interactive=0` option to disable manual confirmation
+
 ### License
 
 You can try Activity Log in a development environment for as long as you like. Once your site goes live, you are

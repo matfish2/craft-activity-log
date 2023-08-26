@@ -10,10 +10,11 @@ use yii\helpers\Console;
 class LogsController extends Controller
 {
     public int $days = 30;
+    public bool $inter = true;
 
     public function options($actionID): array
     {
-        return ['days'];
+        return ['days','interactive'];
     }
 
     public function actionPrune()
@@ -22,7 +23,7 @@ class LogsController extends Controller
 
         $cutoff = Carbon::today()->subDays($days);
 
-        if ($this->confirm("Are you sure you want to permanently delete all records before the last {$days} days (" .$cutoff->format('d-m-Y') . ")?")) {
+        if (!$this->interactive || $this->confirm("Are you sure you want to permanently delete all records before the last {$days} days (" .$cutoff->format('d-m-Y') . ")?")) {
             $this->stdout('Pruning records before ' . $cutoff->format('d-m-Y') . '...' . PHP_EOL, Console::FG_GREEN);
 
             ActivityLog::deleteAll(['<', 'createdAt', $cutoff->format('Y-m-d')]);
