@@ -65,7 +65,7 @@ The `$this` object in this context will be an instance of the request class ([`c
 Only requests satisfying the condition (returning `true`) will be recorded.
 
 ### Action Requests
-Actions are automatically labelled using a naming convention. E.g ["fields","save-group"] will become "Fields Save Group".
+Controller Actions are automatically labelled using a naming convention. E.g ["fields","save-group"] will become "Fields Save Group".
 This is relevant for the "Action" search dropdown on the Logs page and for the Actions widget on the Statistics page.
 In addition the user can optionally override this convention by giving explicit labels to recorded actions under the Actions page.
 
