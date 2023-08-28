@@ -47,8 +47,8 @@ The user can control which request types to record under the Settings page.
 ### Advanced Request Filtering
 
 For a more fine-grained control, **on top of** request type settings, you can use the `requestFilter` setting:
-1. In you project create a `config/activity-logs.php` file
-2. Define a `requestFilter` callback that returns a boolean. E.g:
+1. In your project create a `config/activity-logs.php` file
+2. Define a `requestFilter` callback that returns a `boolean`. E.g:
 ```php
 <?php
 return [
