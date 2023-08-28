@@ -61,7 +61,7 @@ return [
     }
 ]
 ```
-The `$this` object in this context will be an instance of the request class (`craft\web\Request`).
+The `$this` object in this context will be an instance of the request class ([`craft\web\Request`](https://docs.craftcms.com/api/v4/craft-web-request.html)).
 Only requests satisfying the condition (returning `true`) will be recorded.
 
 ### Action Requests
