@@ -42,6 +42,8 @@ class VueTablesActivityLogRetriever
         $q->where("[[createdAt]]>='{$start}'");
         $q->andWhere("[[createdAt]]<='{$end}'");
 
+        $q = (new ApplyFiltersPerViewer($q))->apply();
+
         foreach ($filters as $key => $value) {
             if ($key === 'url') {
                 $q->andWhere("[[$key]] LIKE '%{$value}%' OR [[query]] LIKE '%{$value}%'");

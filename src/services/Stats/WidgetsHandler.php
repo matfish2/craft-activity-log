@@ -78,7 +78,7 @@ class WidgetsHandler
                 'type',
                 'settings',
             ])
-            ->from(['{{activitylog_widgets}}']);
+            ->from(['{{%activitylog_widgets}}']);
     }
 
     public function reorderWidgets($widgetIds): bool
