@@ -1,5 +1,9 @@
 # Release Notes for Activity Log
 
+## 1.5.4 - 2023-09-09
+### Fixed
+- Incorrect reference to widgets table breaking prefixed table query
+
 ## 1.5.3 - 2023-08-26
 ### Improved
 - Add `interactive` option to prune command
