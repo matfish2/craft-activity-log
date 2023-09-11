@@ -1,5 +1,9 @@
 # Release Notes for Activity Log
 
+## 1.6.0 - 2023-09-11
+### Added
+- Add `viewFiltersPerUser` setting
+
 ## 1.5.4 - 2023-09-09
 ### Fixed
 - Incorrect reference to widgets table breaking prefixed table query

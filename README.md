@@ -64,6 +64,26 @@ return [
 The `$this` object in this context will be an instance of the request class ([`craft\web\Request`](https://docs.craftcms.com/api/v4/craft-web-request.html)).
 Only requests satisfying the condition (returning `true`) will be recorded.
 
+### View Filtering per User 
+While `reqestsFilter` allows you to control which requests are being **recorded** to the database, at times, you may wish to filter some recorded requests from the [**viewable** audit trail](#audit-trail-ui) for specific users, either due to permissions or in order to reduce the cognitive load of parsing unnecessary data.
+This can be accomplished using the `viewFiltersPerUser` setting, following the same structure as the example below:
+```php 
+'viewFiltersPerUser'=> [
+        [
+            'users'=>['admin'], // Username(s) of relevant users
+            'filters'=>[ // Filters to be applied for said users
+                'isCp'=>true, // Only Control Panel requests
+                'isAction'=>true, // Only Action requests 
+                'isAjax'=>false, // Only page Requests
+                'siteId'=>1, // or (e.g) [1,2] for multiple sites
+                'actions'=>[ // Only display those actions 
+                    ['user-settings','save-group'] // full action array, can be found under `actionSegments` in `activitylogs` table
+                ]
+            ]
+        ]
+```
+Users not included in any of the array items will be shown the full audit trail.
+
 ### Action Requests
 [Controller Actions](https://craftcms.com/docs/4.x/dev/controller-actions.html) are automatically labelled using a naming convention. E.g ["fields","save-group"] will become "Fields Save Group".
 This is relevant for the "Action" search dropdown on the Logs page and for the Actions widget on the Statistics page.

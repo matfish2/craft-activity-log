@@ -4,6 +4,7 @@ namespace matfish\ActivityLog\services;
 
 use Carbon\Carbon;
 use craft\db\Query;
+use matfish\ActivityLog\Plugin;
 
 class VueTablesActivityLogRetriever
 {
@@ -42,7 +43,11 @@ class VueTablesActivityLogRetriever
         $q->where("[[createdAt]]>='{$start}'");
         $q->andWhere("[[createdAt]]<='{$end}'");
 
-        $q = (new ApplyFiltersPerViewer($q))->apply();
+        $initialFilters = Plugin::getInstance()->getSettings()->viewFiltersPerUser;
+
+        if ($initialFilters) {
+            $q = (new ApplyFiltersPerViewer($q))->apply();
+        }
 
         foreach ($filters as $key => $value) {
             if ($key === 'url') {
