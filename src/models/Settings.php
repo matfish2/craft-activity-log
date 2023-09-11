@@ -14,6 +14,8 @@ class Settings extends Model
 
     public $requestFilter = null;
 
+    public $viewFilters = [];
+
     public function rules(): array
     {
         return [

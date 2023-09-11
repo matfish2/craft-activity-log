@@ -1,5 +1,9 @@
 # Release Notes for Activity Log
 
+## 0.2.0 - 2023-09-11
+### Added
+- Add `viewFilters` setting [#11](https://github.com/matfish2/craft-activity-log/issues/11)
+
 ## 0.1.9 - 2023-08-25
 ### Added
 - Add `requestFilter` setting [#11](https://github.com/matfish2/craft-activity-log/issues/11)

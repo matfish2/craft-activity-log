@@ -4,6 +4,7 @@ namespace matfish\ActivityLog\services;
 
 use Carbon\Carbon;
 use craft\db\Query;
+use matfish\ActivityLog\Plugin;
 
 class VueTablesActivityLogRetriever
 {
@@ -30,7 +31,7 @@ class VueTablesActivityLogRetriever
         $end = Carbon::createFromFormat('d/m/Y', $createdAtEnd)->endOfDay()->format('Y-m-d H:i:s');
 
         $action = $req->getQueryParam('actionSegments');
-        $action = $action ? json_decode($action,true) : null;
+        $action = $action ? json_decode($action, true) : null;
 
         $page = $req->getQueryParam('page') ?? 1;
         $perPage = $req->getQueryParam('limit');
@@ -40,13 +41,19 @@ class VueTablesActivityLogRetriever
         $q->where("{{%activitylog}}.[[dateCreated]]>='{$start}'");
         $q->andWhere("{{%activitylog}}.[[dateCreated]]<='{$end}'");
 
+        $initialFilters = Plugin::getInstance()->getSettings()->viewFilters;
+
+        if ($initialFilters) {
+            $q = (new ApplyFiltersPerViewer($q))->apply();
+        }
+
         foreach ($filters as $key => $value) {
             if ($key === 'url') {
                 $q->andWhere("[[$key]] LIKE '%{$value}%' OR [[query]] LIKE '%{$value}%'");
             } elseif ($key === 'responseCode') {
                 $valueEnd = $value + 99;
                 $q->andWhere("[[$key]]>=$value AND [[$key]]<=$valueEnd");
-            }  elseif ($key === 'userId') {
+            } elseif ($key === 'userId') {
                 $q->andWhere("{{%users}}.[[username]] LIKE '%$value%' OR CONCAT({{%users}}.[[firstName]], ' ',{{%users}}.[[lastName]])  LIKE '%$value%'");
             } else {
                 $q->andWhere("[[$key]]='{$value}'");
@@ -57,9 +64,9 @@ class VueTablesActivityLogRetriever
             $type = $action['type'];
             $value = $action['q'];
 
-            if ($value==='allActions') {
+            if ($value === 'allActions') {
                 $q->andWhere("[[isAction]]=1");
-            } elseif ($type==='equal') {
+            } elseif ($type === 'equal') {
                 $q->andWhere("[[actionSegments]]='$value'");
             } else {
                 $q->andWhere("[[actionSegments]] LIKE '%$value%'");
