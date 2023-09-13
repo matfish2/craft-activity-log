@@ -43,7 +43,7 @@ class VueTablesActivityLogRetriever
         $q->where("[[createdAt]]>='{$start}'");
         $q->andWhere("[[createdAt]]<='{$end}'");
 
-        $initialFilters = Plugin::getInstance()->getSettings()->viewFiltersPerUser;
+        $initialFilters = Plugin::getInstance()->getSettings()->viewFilters;
 
         if ($initialFilters) {
             $q = (new ApplyFiltersPerViewer($q))->apply();

@@ -18,7 +18,7 @@ class Settings extends Model
     public array $filterPayloadKeys = [];
     public array $filterPayloadCallbacks = [];
 
-    public array $viewFiltersPerUser = [];
+    public array $viewFilters = [];
 
     public function rules(): array
     {

@@ -72,12 +72,12 @@ class ApplyFiltersPerViewer
         /** @var Settings $settings */
         $settings = Plugin::getInstance()->getSettings();
 
-        return $this->getUserFilters($username, $settings->viewFiltersPerUser);
+        return $this->getUserFilters($username, $settings->viewFilters);
     }
 
-    private function getUserFilters(string $username, array $viewFiltersPerUser)
+    private function getUserFilters(string $username, array $viewFilters)
     {
-        $filters = array_filter($viewFiltersPerUser, function ($record) use ($username) {
+        $filters = array_filter($viewFilters, function ($record) use ($username) {
             return in_array($username, $record['users'], true);
         });
 

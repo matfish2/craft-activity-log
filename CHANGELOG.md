@@ -1,8 +1,8 @@
 # Release Notes for Activity Log
 
-## 1.6.0 - 2023-09-11
+## 1.6.0 - 2023-09-13
 ### Added
-- Add `viewFiltersPerUser` setting
+- Add `viewFilters` setting
 
 ## 1.5.4 - 2023-09-09
 ### Fixed
