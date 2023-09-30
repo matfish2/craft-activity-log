@@ -110,7 +110,7 @@ class ApplyFiltersPerViewer
                     $actions = array_map(/**
                      * @throws \JsonException
                      */ function ($action) {
-                        return "'" . json_encode($action, JSON_THROW_ON_ERROR) . "'";
+                        return "'" . json_encode($action) . "'";
                     }, $value);
                     $actions = implode(',', $actions);
                     $this->query->andWhere("isAction=0 OR [[actionSegments]] IN ($actions)");
