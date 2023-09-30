@@ -107,9 +107,7 @@ class ApplyFiltersPerViewer
                 break;
             case 'actions':
                 if (is_array($value) && count($value) > 0) {
-                    $actions = array_map(/**
-                     * @throws \JsonException
-                     */ function ($action) {
+                    $actions = array_map(static function ($action) {
                         return "'" . json_encode($action) . "'";
                     }, $value);
                     $actions = implode(',', $actions);

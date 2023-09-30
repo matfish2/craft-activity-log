@@ -1,5 +1,9 @@
 # Release Notes for Activity Log
 
+## 0.2.1 - 2023-09-30
+### Fixed
+- Remove JSON_THROW_ON_ERROR to support `viewFilters` on PHP 7.2 [#12](https://github.com/matfish2/craft-activity-log/issues/12)
+
 ## 0.2.0 - 2023-09-11
 ### Added
 - Add `viewFilters` setting [#11](https://github.com/matfish2/craft-activity-log/issues/11)
