@@ -1,5 +1,9 @@
 # Release Notes for Activity Log
 
+#  0.2.2 - 2023-12-16
+### Improved
+- Deduce action names and display all used actions in Action filter
+
 ## 0.2.1 - 2023-09-30
 ### Fixed
 - Remove JSON_THROW_ON_ERROR to support `viewFilters` on PHP 7.2 [#12](https://github.com/matfish2/craft-activity-log/issues/12)
