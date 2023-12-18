@@ -15,9 +15,9 @@ class ActivityLogController extends \craft\web\Controller
     public function actionInitialData(): Response
     {
         $actions = (new Query())->from('{{%activitylog}}')
-            ->where('{{%actionSegments}} IS NOT NULL')
-            ->select('{{%actionSegments}}')
-            ->groupBy('{{%actionSegments}}')
+            ->where('actionSegments IS NOT NULL')
+            ->select('actionSegments')
+            ->groupBy('actionSegments')
             ->all();
 
         $actions = array_map(function ($action) {
