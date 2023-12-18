@@ -1,6 +1,10 @@
 # Release Notes for Activity Log
 
-#  0.2.2 - 2023-12-16
+##  0.2.3 - 2013-12-18
+### Fixed
+- Fixed prefix issue
+
+##  0.2.2 - 2023-12-16
 ### Improved
 - Deduce action names and display all used actions in Action filter
 
