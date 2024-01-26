@@ -1,5 +1,9 @@
 # Release Notes for Activity Log
 
+## 1.7.0 - 2024-01-26
+### Fixed
+- Install Migration: Use dateTime()->notNull() instead of timestamp() 
+
 ## 1.6.0 - 2023-09-13
 ### Added
 - Add `viewFilters` setting

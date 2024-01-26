@@ -28,7 +28,7 @@ class Install extends Migration
                 'isAction' => $this->boolean(),
                 'actionSegments' => $this->string()->null(),
                 'responseCode' => $this->smallInteger(),
-                'createdAt' => $this->timestamp()
+                'createdAt' => $this->dateTime()->notNull()
             ]);
 
             $this->createIndex('activityLogCreatedAt_idx', '{{%activitylog}}', 'createdAt');
