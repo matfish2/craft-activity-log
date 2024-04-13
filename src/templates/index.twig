@@ -124,5 +124,15 @@
     <script>
         window.cpTrigger = '{{ craft.app.config.general.cpTrigger }}';
     </script>
+
+    <style>
+        /*Solves issue with actions dropdown being cut off*/
+        table.VueTables__table {
+            overflow:visible !important;
+        }
+        .table-responsive {
+            overflow:visible;
+        }
+    </style>
 {% endblock %}
 

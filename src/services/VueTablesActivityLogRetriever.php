@@ -8,6 +8,9 @@ use matfish\ActivityLog\Plugin;
 
 class VueTablesActivityLogRetriever
 {
+    /**
+     * @throws \JsonException
+     */
     public function retrieve(): array
     {
         $req = \Craft::$app->request;
@@ -22,16 +25,34 @@ class VueTablesActivityLogRetriever
             ]);
         $filters = $req->getQueryParam('query');
         $createdAt = $req->getQueryParam('createdAt');
-        $createdAt = $createdAt ? json_decode($createdAt, true, 512, JSON_THROW_ON_ERROR) : null;
 
-        $filters = $filters ? json_decode($filters, true) : [];
+        if ($createdAt) {
+            if (is_string($createdAt)) {
+                $createdAt = json_decode($createdAt, true, 512, JSON_THROW_ON_ERROR);
+            }
+        } else {
+            $createdAt = null;
+        }
+
+
+        if ($filters) {
+            if (is_string($filters)) {
+                $filters = json_decode($filters, true, 512, JSON_THROW_ON_ERROR);
+            }
+        } else {
+            $filters = [];
+        }
+
         $createdAtStart = $createdAt ? $createdAt['start'] : Carbon::today()->format('d/m/Y');
         $createdAtEnd = $createdAt ? $createdAt['end'] : Carbon::today()->format('d/m/Y');
         $start = Carbon::createFromFormat('d/m/Y', $createdAtStart)->startOfDay()->format('Y-m-d H:i:s');
         $end = Carbon::createFromFormat('d/m/Y', $createdAtEnd)->endOfDay()->format('Y-m-d H:i:s');
 
         $action = $req->getQueryParam('actionSegments');
-        $action = $action ? json_decode($action, true) : null;
+
+        if ($action && is_string($action)) {
+            $action = json_decode($action, true, 512, JSON_THROW_ON_ERROR);
+        }
 
         $payload = $req->getQueryParam('payload');
 
@@ -51,7 +72,7 @@ class VueTablesActivityLogRetriever
 
         foreach ($filters as $key => $value) {
             if ($key === 'url') {
-                $q->andWhere("[[$key]] LIKE '%{$value}%' OR [[query]] LIKE '%{$value}%'");
+                $q = $q->andWhere("([[$key]] LIKE '%{$value}%' OR [[query]] LIKE '%{$value}%')");
             } elseif ($key === 'responseCode') {
                 $valueEnd = $value + 99;
                 $q->andWhere("[[$key]]>=$value AND [[$key]]<=$valueEnd");

@@ -163,7 +163,7 @@ class Plugin extends BasePlugin
         $item['subnav'] = [
             'logs' => ['label' => 'Logs', 'url' => 'activity-logs'],
             'stats' => ['label' => 'Statistics', 'url' => 'activity-logs/stats'],
-            'actions' => ['label' => 'Actions', 'url' => 'activity-logs/actions']
+//            'actions' => ['label' => 'Actions', 'url' => 'activity-logs/actions']
         ];
 
         return $item;
