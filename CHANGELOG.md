@@ -1,5 +1,9 @@
 # Release Notes for Activity Log
 
+## 2.0.1 - 2024-07-26
+### Fixed
+- Fix Site Name [#14](https://github.com/matfish2/craft-activity-log/issues/14)
+
 ## 2.0.0 - 2024-04-13
 - Craft 5: Initial Release
 
