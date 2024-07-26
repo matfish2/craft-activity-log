@@ -124,7 +124,7 @@ class ActivityLogController extends \craft\web\Controller
         $view->registerJs($allWidgetJs);
 
         $variables['widgetTypes'] = $widgetTypeInfo;
-        $variables['sites'] = Site::find()->select(['id', 'name'])->all();
+        $variables['sites'] = $this->_getSitesList();
         $variables['users'] = array_map(function ($user) {
             return [
                 'id' => $user['id'],
@@ -138,7 +138,7 @@ class ActivityLogController extends \craft\web\Controller
     public function actionInitialData(): Response
     {
         $res = [
-            'sites' => Site::find()->select(['id', 'name'])->all(),
+            'sites' => $this->_getSitesList(),
             'svgPath' => $this->getSvgPath(),
             'actions' => $this->getActionsList()
         ];
@@ -263,5 +263,15 @@ class ActivityLogController extends \craft\web\Controller
         return array_map(function ($widgetType) {
             return ComponentHelper::createComponent($widgetType, WidgetInterface::class);
         }, $widgetTypes);
+    }
+
+    private function _getSitesList()
+    {
+        return array_map(function ($site) {
+            return [
+                'id' => $site->id,
+                'name' => $site->name
+            ];
+        }, Craft::$app->getSites()->getAllSites());
     }
 }

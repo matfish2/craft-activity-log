@@ -1,5 +1,9 @@
 # Release Notes for Activity Log
 
+## 1.7.1 - 2024-07-26
+### Fixed
+- Fix Site Name [#14](https://github.com/matfish2/craft-activity-log/issues/14)
+
 ## 1.7.0 - 2024-01-26
 ### Fixed
 - Install Migration: Use dateTime()->notNull() instead of timestamp() 
