@@ -2,10 +2,16 @@
 
 namespace matfish\ActivityLog\helpers;
 
+use matfish\ActivityLog\records\ActivityLogAction;
+
 class ActionSegmentsToLabel
 {
     public static function convert(string $segments): string
     {
+        if ($action = ActivityLogAction::find()->where(['action' => $segments])->one()) {
+            return $action->label;
+        }
+
         try {
             $x = array_map(static function ($segment) {
                 $p = explode('-', $segment);
