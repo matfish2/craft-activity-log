@@ -1,5 +1,9 @@
 # Release Notes for Activity Log
 
+## 1.7.2 - 2024-07-30
+### Fixed
+- Fix Action stats query [#15](https://github.com/matfish2/craft-activity-log/issues/15)
+
 ## 1.7.1 - 2024-07-26
 ### Fixed
 - Fix Site Name [#14](https://github.com/matfish2/craft-activity-log/issues/14)

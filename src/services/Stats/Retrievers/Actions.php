@@ -15,20 +15,17 @@ class Actions extends Stats
     protected function getData(): array
     {
         $res = $this->query()
-            ->select(['IF({{%activitylog_actions}}.[[label]] IS NULL,0,1) has_label','IF({{%activitylog_actions}}.[[label]] IS NOT NULL,{{%activitylog_actions}}.[[label]],{{%activitylog}}.[[actionSegments]]) name', 'count(*) n'])
+            ->select(['{{%activitylog}}.[[actionSegments]]', 'count(*) n'])
             ->andWhere('{{%activitylog}}.[[isAction]]=1')
             ->leftJoin('{{%users}}', '{{%users}}.[[id]]={{%activitylog}}.[[userId]]')
             ->leftJoin('{{%activitylog_actions}}', '{{%activitylog_actions}}.[[action]]={{%activitylog}}.[[actionSegments]]')
             ->orderBy('count(*) DESC')
             ->groupBy('[[actionSegments]]')->all();
 
-        $res = array_map(static function($x) {
-            if ($x['has_label']==='0') {
-                $x['name'] = ActionSegmentsToLabel::convert($x['name']);
-            }
-
+        $res = array_map(static function ($x) {
+            $x['name'] = ActionSegmentsToLabel::convert($x['actionSegments']);
             return $x;
-        },$res);
+        }, $res);
 
         $resWithOther = $this->groupOthers($res);
 
