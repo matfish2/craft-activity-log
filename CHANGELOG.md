@@ -1,5 +1,9 @@
 # Release Notes for Activity Log
 
+## 2.0.3 - 2024-08-37
+### Fixed
+- Fix IP column length [#16](https://github.com/matfish2/craft-activity-log/issues/16)
+
 ## 2.0.2 - 2024-07-30
 ### Fixed
 - Fix Action status query [#15](https://github.com/matfish2/craft-activity-log/issues/15)

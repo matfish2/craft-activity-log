@@ -19,7 +19,7 @@ class Install extends Migration
                 'payload' => $this->longText()->null(),
                 'userId' => $this->integer()->null(),
                 'execTime' => $this->float()->null(),
-                'ip' => $this->string(20),
+                'ip' => $this->string(50),
                 'userAgent' => $this->string(),
                 'isAjax' => $this->boolean(),
                 'method' => $this->string(10),
