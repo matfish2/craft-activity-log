@@ -22,16 +22,16 @@ class VueTablesActivityLogRetriever
             ]);
         $filters = $req->getQueryParam('query');
         $createdAt = $req->getQueryParam('createdAt');
-        $createdAt = $createdAt ? json_decode($createdAt, true, 512, JSON_THROW_ON_ERROR) : null;
+        $createdAt = $createdAt ? $this->jsonDecode($createdAt) : null;
 
-        $filters = $filters ? json_decode($filters, true) : [];
+        $filters = $filters ? $this->jsonDecode($filters) : [];
         $createdAtStart = $createdAt ? $createdAt['start'] : Carbon::today()->format('d/m/Y');
         $createdAtEnd = $createdAt ? $createdAt['end'] : Carbon::today()->format('d/m/Y');
         $start = Carbon::createFromFormat('d/m/Y', $createdAtStart)->startOfDay()->format('Y-m-d H:i:s');
         $end = Carbon::createFromFormat('d/m/Y', $createdAtEnd)->endOfDay()->format('Y-m-d H:i:s');
 
         $action = $req->getQueryParam('actionSegments');
-        $action = $action ? json_decode($action, true) : null;
+        $action = $action ? $this->jsonDecode($action) : null;
 
         $payload = $req->getQueryParam('payload');
 
@@ -89,5 +89,14 @@ class VueTablesActivityLogRetriever
         $q->offset(($page - 1) * $perPage);
 
         return ['count' => $count, 'data' => $q->all()];
+    }
+
+    private function jsonDecode($value)
+    {
+        if (is_string($value)) {    
+            return json_decode($value, true, 512, JSON_THROW_ON_ERROR);
+        }
+
+        return $value;
     }
 }
