@@ -2,7 +2,7 @@
 
 ## 1.7.3 - 2024-12-21
 ### Fixed
-- Fix JSON decode error on `viewFilters` setting [#16](https://github.com/matfish2/craft-activity-log/issues/16)
+- Fix JSON decode error on `viewFilters` setting [#17](https://github.com/matfish2/craft-activity-log/issues/17)
 
 ## 1.7.2 - 2024-07-30
 ### Fixed
