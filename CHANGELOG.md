@@ -1,5 +1,9 @@
 # Release Notes for Activity Log
 
+## 1.7.4 - 2025-04-17
+### Fixed
+- Fix migration error from Craft 3 to Craft 4 [#18](https://github.com/matfish2/craft-activity-log/issues/18)
+
 ## 1.7.3 - 2024-12-21
 ### Fixed
 - Fix JSON decode error on `viewFilters` setting [#17](https://github.com/matfish2/craft-activity-log/issues/17)
